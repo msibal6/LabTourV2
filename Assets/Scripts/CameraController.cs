@@ -136,6 +136,7 @@ public class CameraController : MonoBehaviour
 
                 heldObject = hit.collider;
                 grabbing = true;
+                Debug.Log(hit.collider.gameObject.layer);
 
                 // Check if we are grabbing a slide
 
@@ -153,6 +154,8 @@ public class CameraController : MonoBehaviour
                     }
                     else
                     {
+                        tempSlide.SetHolder(gameObject);
+
 
                     }
                 }
