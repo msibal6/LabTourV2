@@ -87,114 +87,147 @@ public class CameraController : MonoBehaviour
             //              monitor
             //              nothing
 
-            //// We are not grabbing anything currently
-            //if (!grabbing)
-            //{
-            //    // Looking at an object you can grab
-            //    if (hit.collider.gameObject.layer == 8)
-            //    {
-            //        heldObject = hit.collider;
-            //        grabbing = true;
-            //        // Object is a slide
-            //        if (heldObject.gameObject.CompareTag("Slide"))
-            //        {
-            //            PickUpSlide(heldObject);
-            //        }
-            //        // Object is a flask or just not a slide
-            //    }
-            //    // TODO Grabbing across scenes
-            //    // Looking at something you cannot grab ie the Microscope or Monitor
-            //    if (hit.collider.gameObject.name == "Monitor" )
-            //    {
-            //        MySceneManager.instance.SwitchScene("Computer Screen");
-            //    }
-            //    else if (hit.collider.gameObject.name == "Looking part")
-            //    {
-            //        MySceneManager.instance.SwitchScene("NewMicroscopeView");
-
-            //    }
-
-            //    // Looking at none of above
-
-
-            //}
-            //else // You are grabbing
-            //{
-            //    // Looking at an object you can grab
-            //    // Slide
-            //    // Not Slide
-
-            //    // Looking at monitor or microscope
-            //    // Looking at none of above
-
-
-            //}
-
-            // Nothing in your hand and you're trying to grab something
-            if (!grabbing && hit.collider != null && hit.collider.gameObject.layer == 8)
+            // We are not grabbing anything currently
+            if (!grabbing)
             {
-
-                heldObject = hit.collider;
-                grabbing = true;
-                Debug.Log(hit.collider.gameObject.layer);
-
-                // Check if we are grabbing a slide
-
-                if (heldObject.gameObject.CompareTag("Slide"))
+                // Looking at an object you can grab
+                if (hit.collider.gameObject.layer == 8)
                 {
-                    SlideController tempSlide = heldObject.gameObject.GetComponent<SlideController>();
-                    // Is the slide in the microscope
-                    if (tempSlide.IsHeld())
+                    heldObject = hit.collider;
+                    grabbing = true;
+                    // Object is a slide
+                    if (heldObject.gameObject.CompareTag("Slide"))
                     {
-                        // Release the slide from the microscope
-                        MicroscopeController tempMicro = tempSlide.GetHolder().GetComponent<MicroscopeController>();
-                        Debug.Log("releasing slide");
-                        tempMicro.Release();
-                        tempSlide.SetHolder(gameObject);
+                        PickUpSlide(heldObject);
+                    }
+                    // Object is a flask or just not a slide
+                }
+                // TODO Grabbing across scenes
+                // Looking at something you cannot grab ie the Microscope or Monitor
+            
+                // Looking at none of above
+
+
+            }
+            else // You are grabbing
+            {
+                
+                // Looking at an object you can grab
+                if (hit.collider.gameObject.layer == 8)
+                {
+                    Release();
+                    heldObject = hit.collider;
+                    grabbing = true;
+                    // Object is a slide
+                    if (heldObject.gameObject.CompareTag("Slide"))
+                    {
+                        PickUpSlide(heldObject);
+                    }
+                    // Object is a flask or just not a slide
+                }
+                else if (heldObject.gameObject.CompareTag("Slide") && hit.collider.gameObject.name == "Slide Bed")
+                {
+                    MicroscopeController tempMicroscopeController = hit.collider.transform.parent.gameObject.GetComponent<MicroscopeController>();
+                    if (!tempMicroscopeController.ContainSlide())
+                    {
+                        tempMicroscopeController.Place(heldObject.gameObject);
+                        heldObject.gameObject.GetComponent<SlideController>().SetHolder(tempMicroscopeController.gameObject);
+                        Release();
                     }
                     else
                     {
-                        tempSlide.SetHolder(gameObject);
-
+                        // Placeholder for tooltip that tells there is a slide in the microscope
+                        Debug.Log("Theres already A slide in the microscope");
 
                     }
-                }
-            }
 
-            // Inserting  and releasing Slide Bed if we are grabbing it
-            else if (heldObject != null && heldObject.gameObject.CompareTag("Slide") && hit.collider != null && hit.collider.gameObject.name == "Slide Bed")
-            {
-                MicroscopeController tempMicroscopeController = hit.collider.transform.parent.gameObject.GetComponent<MicroscopeController>();
-
-                if (!tempMicroscopeController.ContainSlide())
-                {   
-                    tempMicroscopeController.Place(heldObject.gameObject);
-                    heldObject.gameObject.GetComponent<SlideController>().SetHolder(tempMicroscopeController.gameObject);
-                    Release();
                 }
+             
+
+                // Looking at none of above
                 else
                 {
-                    // Placeholder for tooltip that tells there is a slide in the microscope
-                    Debug.Log("Theres already A slide in the microscope");
-
+                    Release();
                 }
-            }
-            // You are releasing it into nothing i.e dropping it
-            else
-            {
-                Release();
-            }
 
-            if (hit.collider != null && hit.collider.gameObject.name == "Looking part")
+
+            }
+            if (hit.collider.gameObject.name == "Monitor")
+            {
+                MySceneManager.instance.SwitchScene("Computer Screen");
+            }
+            else if (hit.collider.gameObject.name == "Looking part")
             {
                 MySceneManager.instance.SwitchScene("NewMicroscopeView");
 
             }
-            else if (hit.collider != null && hit.collider.gameObject.name == "Monitor")
-            {
-                MySceneManager.instance.SwitchScene("Computer Screen");
 
-            }
+            //  1st Version Grabbing implementation 
+            // Nothing in your hand and you're trying to grab something
+            //if (!grabbing && hit.collider != null && hit.collider.gameObject.layer == 8)
+            //{
+
+            //    heldObject = hit.collider;
+            //    grabbing = true;
+            //    Debug.Log(hit.collider.gameObject.layer);
+
+            //    // Check if we are grabbing a slide
+
+            //    if (heldObject.gameObject.CompareTag("Slide"))
+            //    {
+            //        SlideController tempSlide = heldObject.gameObject.GetComponent<SlideController>();
+            //        // Is the slide in the microscope
+            //        if (tempSlide.IsHeld())
+            //        {
+            //            // Release the slide from the microscope
+            //            MicroscopeController tempMicro = tempSlide.GetHolder().GetComponent<MicroscopeController>();
+            //            Debug.Log("releasing slide");
+            //            tempMicro.Release();
+            //            tempSlide.SetHolder(gameObject);
+            //        }
+            //        else
+            //        {
+            //            tempSlide.SetHolder(gameObject);
+
+
+            //        }
+            //    }
+            //}
+
+            //// Inserting  and releasing Slide Bed if we are grabbing it
+            //else if (heldObject != null && heldObject.gameObject.CompareTag("Slide") && hit.collider != null && hit.collider.gameObject.name == "Slide Bed")
+            //{
+            //MicroscopeController tempMicroscopeController = hit.collider.transform.parent.gameObject.GetComponent<MicroscopeController>();
+
+            //if (!tempMicroscopeController.ContainSlide())
+            //{
+            //    tempMicroscopeController.Place(heldObject.gameObject);
+            //    heldObject.gameObject.GetComponent<SlideController>().SetHolder(tempMicroscopeController.gameObject);
+            //    Release();
+            //}
+            //else
+            //{
+            //    // Placeholder for tooltip that tells there is a slide in the microscope
+            //    Debug.Log("Theres already A slide in the microscope");
+
+            //}
+            //}
+            //// You are releasing it into nothing i.e dropping it
+            //else
+            //{
+            //    Release();
+            //}
+
+            //if (hit.collider != null && hit.collider.gameObject.name == "Looking part")
+            //{
+            //    MySceneManager.instance.SwitchScene("NewMicroscopeView");
+
+            //}
+            //else if (hit.collider != null && hit.collider.gameObject.name == "Monitor")
+            //{
+            //    MySceneManager.instance.SwitchScene("Computer Screen");
+
+            //}
         }
 
         // Object Tracking for when you are holding it
@@ -203,6 +236,7 @@ public class CameraController : MonoBehaviour
         {
             bool isMoving = System.Math.Abs(Input.GetAxisRaw("Horizontal") + Input.GetAxisRaw("Vertical")) > 0;
             heldObject.transform.position = Vector3.MoveTowards(heldObject.transform.position, holdPoint.transform.position, isMoving ? .08f : 0.05f);
+            Debug.Log(Vector3.MoveTowards(heldObject.transform.position, holdPoint.transform.position, isMoving ? .08f : 0.05f));
 
         }
     }
