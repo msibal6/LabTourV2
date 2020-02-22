@@ -22,17 +22,8 @@ public class ChangeSlides : MonoBehaviour
 		if (count== s1.Length) {
 			count = 0;
 			}
-		b1.image.sprite = s1[0];
-        if (MySceneManager.instance.slideDisplayed == "brain slide")
-        {
-			b1.image.sprite = s1[0];
-
-		}
-        else
-        {
-			b1.image.sprite = s1[1];
-
-        }
+		b1.image.sprite = s1[count];
+        
 
 	}
 }

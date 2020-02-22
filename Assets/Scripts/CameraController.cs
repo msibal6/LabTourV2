@@ -18,8 +18,8 @@ public class CameraController : MonoBehaviour
 
     public float maxInteractionDistance;
 
-    private readonly float maxVertical = 30f;
-    private readonly float maxHorizontal = 30f;
+    public float maxVertical = 30f;
+    public float maxHorizontal = 30f;
 
     private bool grabbing;
     private Collider heldObject;
@@ -112,7 +112,7 @@ public class CameraController : MonoBehaviour
             else // You are grabbing
             {
                 
-                // Looking at an object you can grab
+                // Looking at another object you can grab
                 if (hit.collider.gameObject.layer == 8)
                 {
                     Release();
@@ -142,8 +142,6 @@ public class CameraController : MonoBehaviour
                     }
 
                 }
-             
-
                 // Looking at none of above
                 else
                 {
@@ -236,7 +234,6 @@ public class CameraController : MonoBehaviour
         {
             bool isMoving = System.Math.Abs(Input.GetAxisRaw("Horizontal") + Input.GetAxisRaw("Vertical")) > 0;
             heldObject.transform.position = Vector3.MoveTowards(heldObject.transform.position, holdPoint.transform.position, isMoving ? .08f : 0.05f);
-            Debug.Log(Vector3.MoveTowards(heldObject.transform.position, holdPoint.transform.position, isMoving ? .08f : 0.05f));
 
         }
     }
@@ -249,7 +246,6 @@ public class CameraController : MonoBehaviour
         {
             // Release the slide from the microscope
             MicroscopeController tempMicro = tempSlide.GetHolder().GetComponent<MicroscopeController>();
-            Debug.Log("releasing slide");
             tempMicro.Release();
             tempSlide.SetHolder(gameObject);
         }

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7519876442505995123}
   - component: {fileID: 7519876442505995122}
   - component: {fileID: 7519876442505995133}
+  - component: {fileID: 3769009617966127833}
   m_Layer: 8
   m_Name: 'brain slide '
   m_TagString: Slide
@@ -60,7 +61,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -876546973899608171, guid: 19704f15641864f3d923afccd22422ca, type: 3}
+  - {fileID: 2100000, guid: 59b6b3d551de54d4d893333cbfc7e110, type: 2}
+  - {fileID: 2100000, guid: 59b6b3d551de54d4d893333cbfc7e110, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -122,3 +124,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90757bc432681409ebe5d80c0801a927, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3769009617966127833
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7519876442505995132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d82cb8dab0b2d44e1a5e7dc0c5a573c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  materials:
+  - {fileID: 0}
+  - {fileID: 2100000, guid: 2e847487e81bc47debb056c05948bdcc, type: 2}
+  matIndex: 0
