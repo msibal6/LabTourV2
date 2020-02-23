@@ -136,7 +136,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d82cb8dab0b2d44e1a5e7dc0c5a573c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  materials:
-  - {fileID: 0}
-  - {fileID: 2100000, guid: 2e847487e81bc47debb056c05948bdcc, type: 2}
-  matIndex: 0
+  replaceMaterial: {fileID: 2100000, guid: 2e847487e81bc47debb056c05948bdcc, type: 2}
+  matIndex: 1

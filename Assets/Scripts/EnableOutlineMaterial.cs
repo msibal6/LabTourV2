@@ -4,28 +4,39 @@ using UnityEngine;
 
 public class EnableOutlineMaterial : MonoBehaviour
 {
-    public Material[] materials;
-    private Renderer rend;
+    public Material replaceMaterial;
     public int matIndex;
+
+    private Renderer rend;
+    private Material[] myMaterials;
+    private Material[] tempMaterials;
+
 
     // Start is called before the first frame update
     void Start()
     {
         rend = GetComponent<Renderer>();
         rend.enabled = true;
-        rend.sharedMaterial = materials[0];
+        myMaterials = rend.sharedMaterials;
+        myMaterials[matIndex] = replaceMaterial;
+        tempMaterials = rend.sharedMaterials;
+
+
     }
 
-    
+
     private void OnMouseOver()
     {
-        rend.sharedMaterial = materials[1];
+        rend.sharedMaterials = myMaterials;
+        Debug.Log(myMaterials.Length);
+        Debug.Log(myMaterials[matIndex]);
+
+        Debug.Log(rend.sharedMaterials.Length);
     }
 
     private void OnMouseExit()
     {
-        rend.sharedMaterial = materials[0];
-
+        rend.sharedMaterials = tempMaterials;
 
     }
     // Update is called once per frame

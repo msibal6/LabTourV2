@@ -111,19 +111,11 @@ public class CameraController : MonoBehaviour
             }
             else // You are grabbing
             {
-                
+
                 // Looking at another object you can grab
-                if (hit.collider.gameObject.layer == 8)
+                if (hit.collider == null)
                 {
                     Release();
-                    heldObject = hit.collider;
-                    grabbing = true;
-                    // Object is a slide
-                    if (heldObject.gameObject.CompareTag("Slide"))
-                    {
-                        PickUpSlide(heldObject);
-                    }
-                    // Object is a flask or just not a slide
                 }
                 else if (heldObject.gameObject.CompareTag("Slide") && hit.collider.gameObject.name == "Slide Bed")
                 {
@@ -143,6 +135,18 @@ public class CameraController : MonoBehaviour
 
                 }
                 // Looking at none of above
+                else if (hit.collider.gameObject.layer == 8)
+                {
+                    Release();
+                    heldObject = hit.collider;
+                    grabbing = true;
+                    // Object is a slide
+                    if (heldObject.gameObject.CompareTag("Slide"))
+                    {
+                        PickUpSlide(heldObject);
+                    }
+                    // Object is a flask or just not a slide
+                }
                 else
                 {
                     Release();
