@@ -28,10 +28,7 @@ public class EnableOutlineMaterial : MonoBehaviour
     private void OnMouseOver()
     {
         rend.sharedMaterials = myMaterials;
-        Debug.Log(myMaterials.Length);
-        Debug.Log(myMaterials[matIndex]);
-
-        Debug.Log(rend.sharedMaterials.Length);
+      
     }
 
     private void OnMouseExit()
