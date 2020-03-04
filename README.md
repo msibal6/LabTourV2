@@ -3,5 +3,4 @@ Version 2 of Lab Tour Repo
 
 
 # Requirements 
-You need to bring in the models from the google drive to make the scenes 
-work.
+To correctly load all scenes, you must download the models from the Google models folder and bring them into the correct folder in Unity.
