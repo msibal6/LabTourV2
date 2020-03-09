@@ -61,7 +61,7 @@ public class CameraController : MonoBehaviour
         {
 
             // We are not grabbing anything currently
-            if (!grabbing)
+            if (!grabbing )
             {
                 // Looking at an object you can grab
                 if (hit.collider.gameObject.layer == 8)

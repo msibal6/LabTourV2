@@ -43,7 +43,7 @@ public class EnableOutlineMaterial : MonoBehaviour
     private void Update()
     {
         RaycastHit hit = player.GetRaycastHit();
-        if (hit.collider.gameObject == gameObject)
+        if (hit.collider != null && hit.collider.gameObject == gameObject)
         {
             rend.sharedMaterials = myMaterials;
 
