@@ -10,7 +10,7 @@ public class EnableOutlineMaterial : MonoBehaviour
     private Renderer rend;
     private Material[] myMaterials;
     private Material[] tempMaterials;
-    private CameraController player;
+    private InteractionController player;
 
 
     // Start is called before the first frame update
@@ -22,38 +22,21 @@ public class EnableOutlineMaterial : MonoBehaviour
         myMaterials[matIndex] = replaceMaterial;
         tempMaterials = rend.sharedMaterials;
 
-        player = GameObject.Find("Player Camera").GetComponent<CameraController>();
+        player = GameObject.Find("Player").GetComponentInChildren<InteractionController>();
             
 
     }
 
-    
-
-    //private void OnMouseOver()
-    //{
-    //    rend.sharedMaterials = myMaterials;
-
-    //}
-
-    //private void OnMouseExit()
-    //{
-    //    rend.sharedMaterials = tempMaterials;
-
-    //}
     private void Update()
     {
         RaycastHit hit = player.GetRaycastHit();
         if (hit.collider != null && hit.collider.gameObject == gameObject)
         {
             rend.sharedMaterials = myMaterials;
-
         }
         else
         {
             rend.sharedMaterials = tempMaterials;
         }
-        
     }
-
-
 }

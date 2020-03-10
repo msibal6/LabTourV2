@@ -40,7 +40,6 @@ public class CameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Cursor.lockState = CursorLockMode.Locked;
 
         yaw += horizontalPan * Input.GetAxisRaw("Mouse X");
         pitch -= verticaPan * Input.GetAxisRaw("Mouse Y");
