@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.43667588, g: 0.48427194, b: 0.564524, a: 1}
+  m_IndirectSpecularColor: {r: 0.43667564, g: 0.48427135, b: 0.5645232, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -166,11 +166,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: 78a6ee0f66f1b4f4b94110112fb2e175,
-        type: 3}
-      propertyPath: m_Name
-      value: cube room copy
-      objectReference: {fileID: 0}
     - target: {fileID: -6860895033569716450, guid: 78a6ee0f66f1b4f4b94110112fb2e175,
         type: 3}
       propertyPath: m_Enabled
@@ -251,6 +246,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 78a6ee0f66f1b4f4b94110112fb2e175,
+        type: 3}
+      propertyPath: m_Name
+      value: cube room copy
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 78a6ee0f66f1b4f4b94110112fb2e175, type: 3}
 --- !u!1001 &99541947
@@ -260,56 +260,32 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: 5c3a9f2dae8e048049a41bb3caa3bb13,
+    - target: {fileID: -7985893663718810135, guid: 5c3a9f2dae8e048049a41bb3caa3bb13,
         type: 3}
       propertyPath: m_Name
-      value: Microscope
-      objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: 5c3a9f2dae8e048049a41bb3caa3bb13,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
+      value: Blue Magnification
       objectReference: {fileID: 0}
     - target: {fileID: -7217828390678641911, guid: 5c3a9f2dae8e048049a41bb3caa3bb13,
         type: 3}
       propertyPath: m_Name
       value: Lens
       objectReference: {fileID: 0}
-    - target: {fileID: -1303533798577211092, guid: 5c3a9f2dae8e048049a41bb3caa3bb13,
-        type: 3}
-      propertyPath: m_Name
-      value: Lens
-      objectReference: {fileID: 0}
-    - target: {fileID: 2845374075728546383, guid: 5c3a9f2dae8e048049a41bb3caa3bb13,
-        type: 3}
-      propertyPath: m_Name
-      value: Looking part
-      objectReference: {fileID: 0}
-    - target: {fileID: 8310016125541603891, guid: 5c3a9f2dae8e048049a41bb3caa3bb13,
-        type: 3}
-      propertyPath: m_Name
-      value: Looking part
-      objectReference: {fileID: 0}
     - target: {fileID: -6077727208183626815, guid: 5c3a9f2dae8e048049a41bb3caa3bb13,
         type: 3}
       propertyPath: m_Name
       value: Slide Frame
       objectReference: {fileID: 0}
-    - target: {fileID: 1766154439090108837, guid: 5c3a9f2dae8e048049a41bb3caa3bb13,
+    - target: {fileID: -5263483818058377930, guid: 5c3a9f2dae8e048049a41bb3caa3bb13,
         type: 3}
-      propertyPath: m_Name
-      value: Slide Pin
+      propertyPath: m_Materials.Array.size
+      value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: -4292809215615720832, guid: 5c3a9f2dae8e048049a41bb3caa3bb13,
+    - target: {fileID: -5263483818058377930, guid: 5c3a9f2dae8e048049a41bb3caa3bb13,
         type: 3}
-      propertyPath: m_Name
-      value: Slide Bed
-      objectReference: {fileID: 0}
-    - target: {fileID: -2842552063074612439, guid: 5c3a9f2dae8e048049a41bb3caa3bb13,
+      propertyPath: m_Materials.Array.data[2]
+      value: 
+      objectReference: {fileID: 8013318452267393701, guid: 5c3a9f2dae8e048049a41bb3caa3bb13,
         type: 3}
-      propertyPath: m_Name
-      value: Yellow Magnification
-      objectReference: {fileID: 0}
     - target: {fileID: -4876355759466441678, guid: 5c3a9f2dae8e048049a41bb3caa3bb13,
         type: 3}
       propertyPath: m_Name
@@ -320,10 +296,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Black Magnification
       objectReference: {fileID: 0}
-    - target: {fileID: -7985893663718810135, guid: 5c3a9f2dae8e048049a41bb3caa3bb13,
+    - target: {fileID: -4292809215615720832, guid: 5c3a9f2dae8e048049a41bb3caa3bb13,
         type: 3}
       propertyPath: m_Name
-      value: Blue Magnification
+      value: Slide Bed
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 5c3a9f2dae8e048049a41bb3caa3bb13,
         type: 3}
@@ -395,17 +371,36 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.15
       objectReference: {fileID: 0}
-    - target: {fileID: -5263483818058377930, guid: 5c3a9f2dae8e048049a41bb3caa3bb13,
+    - target: {fileID: -2842552063074612439, guid: 5c3a9f2dae8e048049a41bb3caa3bb13,
         type: 3}
-      propertyPath: m_Materials.Array.size
-      value: 3
+      propertyPath: m_Name
+      value: Yellow Magnification
       objectReference: {fileID: 0}
-    - target: {fileID: -5263483818058377930, guid: 5c3a9f2dae8e048049a41bb3caa3bb13,
+    - target: {fileID: -1303533798577211092, guid: 5c3a9f2dae8e048049a41bb3caa3bb13,
         type: 3}
-      propertyPath: m_Materials.Array.data[2]
-      value: 
-      objectReference: {fileID: 8013318452267393701, guid: 5c3a9f2dae8e048049a41bb3caa3bb13,
+      propertyPath: m_Name
+      value: Lens
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 5c3a9f2dae8e048049a41bb3caa3bb13,
         type: 3}
+      propertyPath: m_Name
+      value: Microscope
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 5c3a9f2dae8e048049a41bb3caa3bb13,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1766154439090108837, guid: 5c3a9f2dae8e048049a41bb3caa3bb13,
+        type: 3}
+      propertyPath: m_Name
+      value: Slide Pin
+      objectReference: {fileID: 0}
+    - target: {fileID: 2845374075728546383, guid: 5c3a9f2dae8e048049a41bb3caa3bb13,
+        type: 3}
+      propertyPath: m_Name
+      value: Looking part
+      objectReference: {fileID: 0}
     - target: {fileID: 3356260016121597226, guid: 5c3a9f2dae8e048049a41bb3caa3bb13,
         type: 3}
       propertyPath: m_Materials.Array.size
@@ -417,6 +412,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -3105160532357560465, guid: 5c3a9f2dae8e048049a41bb3caa3bb13,
         type: 3}
+    - target: {fileID: 8310016125541603891, guid: 5c3a9f2dae8e048049a41bb3caa3bb13,
+        type: 3}
+      propertyPath: m_Name
+      value: Looking part
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5c3a9f2dae8e048049a41bb3caa3bb13, type: 3}
 --- !u!1 &223974226 stripped
@@ -438,6 +438,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   placePoint: {fileID: 1382978077}
+--- !u!1 &268741616
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 268741617}
+  m_Layer: 0
+  m_Name: placePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &268741617
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 268741616}
+  m_LocalRotation: {x: 0.707002, y: 0.7070948, z: 0.012174711, w: 0.0041131326}
+  m_LocalPosition: {x: -0.8200001, y: 2.609, z: 3.2089994}
+  m_LocalScale: {x: 0.23379995, y: 0.23379993, z: 0.022799991}
+  m_Children: []
+  m_Father: {fileID: 1468617005}
+  m_RootOrder: 89
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &271162980
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -445,10 +475,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 7519876442505995132, guid: 742217f9e28684d59b235b311c972bc4,
+    - target: {fileID: 3769009617966127833, guid: 742217f9e28684d59b235b311c972bc4,
         type: 3}
-      propertyPath: m_Name
-      value: brain slide (2)
+      propertyPath: matIndex
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7519876442505995126, guid: 742217f9e28684d59b235b311c972bc4,
         type: 3}
@@ -505,10 +535,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3769009617966127833, guid: 742217f9e28684d59b235b311c972bc4,
+    - target: {fileID: 7519876442505995132, guid: 742217f9e28684d59b235b311c972bc4,
         type: 3}
-      propertyPath: matIndex
-      value: 0
+      propertyPath: m_Name
+      value: brain slide (2)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 742217f9e28684d59b235b311c972bc4, type: 3}
@@ -567,8 +597,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 0
   m_PreserveAspect: 0
@@ -587,6 +615,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 276168928}
   m_CullTransparentMesh: 0
+--- !u!1 &337603993 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -4292809215615720832, guid: 6d382c425fbd7425e84366d37529762b,
+    type: 3}
+  m_PrefabInstance: {fileID: 469028430}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &337603997
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 337603993}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.0000002, y: 2, z: 2.0000029}
+  m_Center: {x: 0.07954619, y: 0.44200838, z: 34.88786}
 --- !u!1001 &469028430
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -594,20 +641,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: 6d382c425fbd7425e84366d37529762b,
+    - target: {fileID: -4292809215615720832, guid: 6d382c425fbd7425e84366d37529762b,
         type: 3}
       propertyPath: m_Name
-      value: Microscope 3_3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2845374075728546383, guid: 6d382c425fbd7425e84366d37529762b,
-        type: 3}
-      propertyPath: m_Name
-      value: Looking part
-      objectReference: {fileID: 0}
-    - target: {fileID: 2853410873416866011, guid: 6d382c425fbd7425e84366d37529762b,
-        type: 3}
-      propertyPath: m_Name
-      value: Looking part
+      value: Slide Bed
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 6d382c425fbd7425e84366d37529762b,
         type: 3}
@@ -679,6 +716,21 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.15
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 6d382c425fbd7425e84366d37529762b,
+        type: 3}
+      propertyPath: m_Name
+      value: Microscope 3_3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2845374075728546383, guid: 6d382c425fbd7425e84366d37529762b,
+        type: 3}
+      propertyPath: m_Name
+      value: Looking part
+      objectReference: {fileID: 0}
+    - target: {fileID: 2853410873416866011, guid: 6d382c425fbd7425e84366d37529762b,
+        type: 3}
+      propertyPath: m_Name
+      value: Looking part
+      objectReference: {fileID: 0}
     - target: {fileID: 3356260016121597226, guid: 6d382c425fbd7425e84366d37529762b,
         type: 3}
       propertyPath: m_Materials.Array.size
@@ -710,11 +762,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 7519876442505995132, guid: 742217f9e28684d59b235b311c972bc4,
-        type: 3}
-      propertyPath: m_Name
-      value: brain slide (3)
-      objectReference: {fileID: 0}
     - target: {fileID: 7519876442505995126, guid: 742217f9e28684d59b235b311c972bc4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -769,6 +816,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7519876442505995132, guid: 742217f9e28684d59b235b311c972bc4,
+        type: 3}
+      propertyPath: m_Name
+      value: brain slide (3)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 742217f9e28684d59b235b311c972bc4, type: 3}
@@ -1053,11 +1105,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: 37b508751a6644ff69b5633faa92dd4d,
-        type: 3}
-      propertyPath: m_Name
-      value: new_table_1_22
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 37b508751a6644ff69b5633faa92dd4d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1132,6 +1179,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.y
       value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 37b508751a6644ff69b5633faa92dd4d,
+        type: 3}
+      propertyPath: m_Name
+      value: new_table_1_22
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 37b508751a6644ff69b5633faa92dd4d, type: 3}
@@ -1346,6 +1398,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   placePoint: {fileID: 1382978077}
+--- !u!4 &1468617005 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 6d382c425fbd7425e84366d37529762b,
+    type: 3}
+  m_PrefabInstance: {fileID: 469028430}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1506298574
 GameObject:
   m_ObjectHideFlags: 0
@@ -1492,16 +1550,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: dad8bcc22c2994a56977b9e95c6cf6c2,
-        type: 3}
-      propertyPath: m_Name
-      value: monitor 2_22
-      objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: dad8bcc22c2994a56977b9e95c6cf6c2,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: dad8bcc22c2994a56977b9e95c6cf6c2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1574,6 +1622,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7576386722563338562, guid: 681caf754a7ad4c7d9ab895eaeee2c70,
         type: 3}
+    - target: {fileID: -927199367670048503, guid: dad8bcc22c2994a56977b9e95c6cf6c2,
+        type: 3}
+      propertyPath: m_Name
+      value: Monitor
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: dad8bcc22c2994a56977b9e95c6cf6c2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dad8bcc22c2994a56977b9e95c6cf6c2, type: 3}
 --- !u!1 &1865914917 stripped
@@ -1682,11 +1740,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 7519876442505995132, guid: 742217f9e28684d59b235b311c972bc4,
-        type: 3}
-      propertyPath: m_Name
-      value: brain slide (1)
-      objectReference: {fileID: 0}
     - target: {fileID: 7519876442505995126, guid: 742217f9e28684d59b235b311c972bc4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1741,6 +1794,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7519876442505995132, guid: 742217f9e28684d59b235b311c972bc4,
+        type: 3}
+      propertyPath: m_Name
+      value: brain slide (1)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 742217f9e28684d59b235b311c972bc4, type: 3}
