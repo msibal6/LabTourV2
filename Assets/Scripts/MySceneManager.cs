@@ -10,11 +10,9 @@ public class MySceneManager : MonoBehaviour
     public static MySceneManager instance;
     public List<Vector3> slidePos;
     public List<string> slideNames;
+    public List<string> picturesTaken;
     public Vector3 playerPos;
     public string slideDisplayed;
-
-
-
 
     // Start is called before the first frame update
     void Start()

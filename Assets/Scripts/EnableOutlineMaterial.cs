@@ -10,6 +10,7 @@ public class EnableOutlineMaterial : MonoBehaviour
     private Renderer rend;
     private Material[] myMaterials;
     private Material[] tempMaterials;
+    private InteractionController player;
 
 
     // Start is called before the first frame update
@@ -21,25 +22,21 @@ public class EnableOutlineMaterial : MonoBehaviour
         myMaterials[matIndex] = replaceMaterial;
         tempMaterials = rend.sharedMaterials;
 
+        player = GameObject.Find("Player").GetComponentInChildren<InteractionController>();
+            
 
     }
 
-
-    private void OnMouseOver()
+    private void Update()
     {
-        rend.sharedMaterials = myMaterials;
-      
+        RaycastHit hit = player.GetRaycastHit();
+        if (hit.collider != null && hit.collider.gameObject == gameObject)
+        {
+            rend.sharedMaterials = myMaterials;
+        }
+        else
+        {
+            rend.sharedMaterials = tempMaterials;
+        }
     }
-
-    private void OnMouseExit()
-    {
-        rend.sharedMaterials = tempMaterials;
-
-    }
-    // Update is called once per frame
-    // TODO
-    // 1 Disable outline material at the start
-    // 2 enable outline material when the mouse is over the object
-    // 3 disble outline material when the mosue is off the object
-
 }

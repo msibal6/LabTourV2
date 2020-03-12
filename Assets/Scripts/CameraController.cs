@@ -24,14 +24,6 @@ public class CameraController : MonoBehaviour
     private bool grabbing;
     private Collider heldObject;
 
-
-    
-
-
-    
-
-
-
     // Start is called before the first frame update
     void Start()
     {
@@ -42,25 +34,13 @@ public class CameraController : MonoBehaviour
             gameObject.transform.position = MySceneManager.instance.playerPos;
         }
 
-        //SceneManager.sceneUnloaded += PlayerCleanUp;
-
-
-        // TODO Cursor visibility needs fixing
-
-        //Cursor.visible = true;
-        //Cursor.SetCursor(Texture2D.blackTexture, new Vector2(Screen.width / 2, Screen.height / 2), CursorMode.Auto);
-
         Cursor.lockState = CursorLockMode.Locked;
-
-        //Cursor.SetCursor(Texture2D.blackTexture, Vector2.zero, CursorMode.Auto);
-
-
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
         yaw += horizontalPan * Input.GetAxisRaw("Mouse X");
         pitch -= verticaPan * Input.GetAxisRaw("Mouse Y");
         transform.position += moveSpeed * new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
@@ -71,43 +51,29 @@ public class CameraController : MonoBehaviour
     {
         Ray ray = new Ray(transform.position, transform.forward);
 
-
         // Looking to determine if there is something to interact with
-        // THIS IS AN INTERACTION ARRAY
         Physics.Raycast(ray, out RaycastHit hit, maxInteractionDistance);
 
 
         // You try to grab here
         if (Input.GetMouseButtonDown(0))
         {
-            // TODO Add all grabbin cases i.e grabbing and you want to switch with something and etc
-            // TODO Reimplement grabbing cases
-            // We can be looking at microscope
-            //              slide
-            //              monitor
-            //              nothing
 
             // We are not grabbing anything currently
-            if (!grabbing)
+            if (!grabbing )
             {
                 // Looking at an object you can grab
                 if (hit.collider.gameObject.layer == 8)
                 {
                     heldObject = hit.collider;
                     grabbing = true;
+
                     // Object is a slide
                     if (heldObject.gameObject.CompareTag("Slide"))
                     {
                         PickUpSlide(heldObject);
                     }
-                    // Object is a flask or just not a slide
                 }
-                // TODO Grabbing across scenes
-                // Looking at something you cannot grab ie the Microscope or Monitor
-            
-                // Looking at none of above
-
-
             }
             else // You are grabbing
             {
@@ -120,20 +86,16 @@ public class CameraController : MonoBehaviour
                 else if (heldObject.gameObject.CompareTag("Slide") && hit.collider.gameObject.name == "Slide Bed")
                 {
                     MicroscopeController tempMicroscopeController = hit.collider.transform.parent.gameObject.GetComponent<MicroscopeController>();
-                    if (!tempMicroscopeController.ContainSlide())
-                    {
+                    if (!tempMicroscopeController.ContainSlide()) {
                         tempMicroscopeController.Place(heldObject.gameObject);
                         heldObject.gameObject.GetComponent<SlideController>().SetHolder(tempMicroscopeController.gameObject);
                         Release();
-                    }
-                    else
-                    {
+                    } else {
                         // Placeholder for tooltip that tells there is a slide in the microscope
                         Debug.Log("Theres already A slide in the microscope");
-
                     }
-
                 }
+
                 // Looking at none of above
                 else if (hit.collider.gameObject.layer == 8)
                 {
@@ -161,75 +123,11 @@ public class CameraController : MonoBehaviour
             else if (hit.collider.gameObject.name == "Looking part")
             {
                 MySceneManager.instance.SwitchScene("NewMicroscopeView");
-
             }
-
-            //  1st Version Grabbing implementation 
-            // Nothing in your hand and you're trying to grab something
-            //if (!grabbing && hit.collider != null && hit.collider.gameObject.layer == 8)
-            //{
-
-            //    heldObject = hit.collider;
-            //    grabbing = true;
-            //    Debug.Log(hit.collider.gameObject.layer);
-
-            //    // Check if we are grabbing a slide
-
-            //    if (heldObject.gameObject.CompareTag("Slide"))
-            //    {
-            //        SlideController tempSlide = heldObject.gameObject.GetComponent<SlideController>();
-            //        // Is the slide in the microscope
-            //        if (tempSlide.IsHeld())
-            //        {
-            //            // Release the slide from the microscope
-            //            MicroscopeController tempMicro = tempSlide.GetHolder().GetComponent<MicroscopeController>();
-            //            Debug.Log("releasing slide");
-            //            tempMicro.Release();
-            //            tempSlide.SetHolder(gameObject);
-            //        }
-            //        else
-            //        {
-            //            tempSlide.SetHolder(gameObject);
-
-
-            //        }
-            //    }
-            //}
-
-            //// Inserting  and releasing Slide Bed if we are grabbing it
-            //else if (heldObject != null && heldObject.gameObject.CompareTag("Slide") && hit.collider != null && hit.collider.gameObject.name == "Slide Bed")
-            //{
-            //MicroscopeController tempMicroscopeController = hit.collider.transform.parent.gameObject.GetComponent<MicroscopeController>();
-
-            //if (!tempMicroscopeController.ContainSlide())
-            //{
-            //    tempMicroscopeController.Place(heldObject.gameObject);
-            //    heldObject.gameObject.GetComponent<SlideController>().SetHolder(tempMicroscopeController.gameObject);
-            //    Release();
-            //}
-            //else
-            //{
-            //    // Placeholder for tooltip that tells there is a slide in the microscope
-            //    Debug.Log("Theres already A slide in the microscope");
-
-            //}
-            //}
-            //// You are releasing it into nothing i.e dropping it
-            //else
-            //{
-            //    Release();
-            //}
-
-            //if (hit.collider != null && hit.collider.gameObject.name == "Looking part")
-            //{
-            //    MySceneManager.instance.SwitchScene("NewMicroscopeView");
-
-            //}
-            //else if (hit.collider != null && hit.collider.gameObject.name == "Monitor")
-            //{
-            //    MySceneManager.instance.SwitchScene("Computer Screen");
-
-            //}
+            else
+            {
+                ;
+            }
         }
 
         // Object Tracking for when you are holding it
@@ -238,16 +136,30 @@ public class CameraController : MonoBehaviour
         {
             bool isMoving = System.Math.Abs(Input.GetAxisRaw("Horizontal") + Input.GetAxisRaw("Vertical")) > 0;
             heldObject.transform.position = Vector3.MoveTowards(heldObject.transform.position, holdPoint.transform.position, isMoving ? .08f : 0.05f);
-
         }
+        else
+        {
+            ;
+        }
+    }
+
+    public RaycastHit GetRaycastHit()
+    {
+        Ray ray = new Ray(transform.position, transform.forward);
+        Physics.Raycast(ray, out RaycastHit hit, maxInteractionDistance);
+        return hit;
+
+
     }
 
     private void PickUpSlide(Collider slide)
     {
         SlideController tempSlide = slide.gameObject.GetComponent<SlideController>();
+
         // Is the slide in the microscope
         if (tempSlide.IsHeld())
         {
+
             // Release the slide from the microscope
             MicroscopeController tempMicro = tempSlide.GetHolder().GetComponent<MicroscopeController>();
             tempMicro.Release();
@@ -272,19 +184,10 @@ public class CameraController : MonoBehaviour
         Gizmos.DrawRay(transform.position, transform.forward * 100);
     }
 
-
-
-
-    void OnDestroy()
+    private void OnDestroy()
     {
         MySceneManager.instance.playerPos = transform.position;
         Cursor.lockState = CursorLockMode.None;
 
     }
-
-    //private void PlayerCleanUp(Scene current)
-    //{
-    //    Cursor.lockState = CursorLockMode.None;
-    //}
-
 }
