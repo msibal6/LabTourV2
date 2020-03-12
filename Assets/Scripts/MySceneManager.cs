@@ -43,5 +43,7 @@ public class MySceneManager : MonoBehaviour
     {
         SceneManager.LoadScene(name);
 
-    }  
+    }
+
+   
 }
