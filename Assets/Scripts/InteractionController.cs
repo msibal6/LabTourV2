@@ -5,8 +5,7 @@ using UnityEngine;
 public class InteractionController : MonoBehaviour
 {
     public Transform holdPoint;
-    public float horizontalPan = 2.5f;
-    public float verticaPan = 2.5f;
+    public float mouseSens;
 
     private float yaw;
     private float pitch;
@@ -22,9 +21,9 @@ public class InteractionController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        yaw += horizontalPan * Input.GetAxisRaw("Mouse X");
-        pitch -= verticaPan * Input.GetAxisRaw("Mouse Y");
-        transform.eulerAngles = new Vector3(Mathf.Clamp(pitch, -maxVertical, maxVertical), Mathf.Clamp(yaw, -maxHorizontal, maxHorizontal));
+        //yaw += horizontalPan * Input.GetAxisRaw("Mouse X");
+        //pitch -= verticaPan * Input.GetAxisRaw("Mouse Y");
+        //transform.eulerAngles = new Vector3(Mathf.Clamp(pitch, -maxVertical, maxVertical), Mathf.Clamp(yaw, -maxHorizontal, maxHorizontal));
 
 
     }
@@ -32,9 +31,11 @@ public class InteractionController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        yaw += horizontalPan * Input.GetAxisRaw("Mouse X");
-        pitch -= verticaPan * Input.GetAxisRaw("Mouse Y");
-        transform.eulerAngles = new Vector3(Mathf.Clamp(pitch, -maxVertical, maxVertical), Mathf.Clamp(yaw, -maxHorizontal, maxHorizontal));
+        yaw += mouseSens * Input.GetAxis("Mouse X") * Time.deltaTime;
+        pitch -= mouseSens * Input.GetAxis("Mouse Y") * Time.deltaTime;
+        //transform.eulerAngles = new Vector3(Mathf.Clamp(pitch, -maxVertical, maxVertical), Mathf.Clamp(yaw, -maxHorizontal, maxHorizontal));
+        transform.localRotation = Quaternion.Euler(Mathf.Clamp(pitch, -maxVertical, maxVertical), Mathf.Clamp(yaw, -maxHorizontal, maxHorizontal), 0f);
+
     }
 
     void FixedUpdate()
@@ -113,7 +114,7 @@ public class InteractionController : MonoBehaviour
             {
                 MySceneManager.instance.SwitchScene("Computer Screen");
             }
-            else if (hit.collider.gameObject.name == "Looking part")
+            else if (hit.collider.gameObject.name == "Looking part" || hit.collider.gameObject.name == "Looking part 1")
             {
                 MySceneManager.instance.SwitchScene("NewMicroscopeView");
             }
@@ -174,12 +175,5 @@ public class InteractionController : MonoBehaviour
         // Draws a 5 unit long red line in front of the object
         Gizmos.color = Color.red;
         Gizmos.DrawRay(transform.position, transform.forward * 100);
-    }
-
-    private void OnDestroy()
-    {
-        MySceneManager.instance.playerPos = transform.position;
-        Cursor.lockState = CursorLockMode.None;
-
     }
 }

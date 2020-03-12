@@ -10,12 +10,13 @@ public class EnableBlankeOutline : MonoBehaviour
     private Material[] myMaterials;
     private Material[] tempMaterials;
     private InteractionController player;
+    public bool isOutlined;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        rend = GetComponent<Renderer>();
+        rend = gameObject.GetComponentsInChildren<MeshRenderer>()[1];
         rend.enabled = true;
         tempMaterials = rend.sharedMaterials;
         myMaterials = rend.sharedMaterials;
@@ -30,11 +31,26 @@ public class EnableBlankeOutline : MonoBehaviour
         RaycastHit hit = player.GetRaycastHit();
         if (hit.collider != null && hit.collider.gameObject == gameObject)
         {
-            rend.sharedMaterials = myMaterials;
+            EnableOutline();
         }
         else
         {
-            rend.sharedMaterials = tempMaterials;
+            DisableOutline();
         }
+    }
+
+    public void DisableOutline()
+    {
+        rend.sharedMaterials = tempMaterials;
+            
+       
+    }
+
+    public void EnableOutline()
+    {
+        rend.sharedMaterials = myMaterials;
+        print("outline" + gameObject.name);
+
+
     }
 }
