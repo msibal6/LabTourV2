@@ -42,15 +42,10 @@ public class EnableBlankeOutline : MonoBehaviour
     public void DisableOutline()
     {
         rend.sharedMaterials = tempMaterials;
-            
-       
     }
 
     public void EnableOutline()
     {
         rend.sharedMaterials = myMaterials;
-        print("outline" + gameObject.name);
-
-
     }
 }

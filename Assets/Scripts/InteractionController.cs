@@ -18,16 +18,6 @@ public class InteractionController : MonoBehaviour
     private bool grabbing;
     private Collider heldObject;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        //yaw += horizontalPan * Input.GetAxisRaw("Mouse X");
-        //pitch -= verticaPan * Input.GetAxisRaw("Mouse Y");
-        //transform.eulerAngles = new Vector3(Mathf.Clamp(pitch, -maxVertical, maxVertical), Mathf.Clamp(yaw, -maxHorizontal, maxHorizontal));
-
-
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -44,7 +34,6 @@ public class InteractionController : MonoBehaviour
 
         // Looking to determine if there is something to interact with
         Physics.Raycast(ray, out RaycastHit hit, maxInteractionDistance);
-
 
         // You try to grab here
         if (Input.GetMouseButtonDown(0))
