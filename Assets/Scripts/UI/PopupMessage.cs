@@ -76,7 +76,6 @@ public class PopupMessage : MonoBehaviour
     public void Open()
     {
         ui.SetActive(true);
-        print(ui.GetComponentsInChildren<RawImage>().Length);
 
         ui.GetComponentsInChildren<RawImage>()[1].enabled = false;
         ui.GetComponentsInChildren<Text>()[0].enabled = false;
@@ -84,12 +83,17 @@ public class PopupMessage : MonoBehaviour
         ui.GetComponentsInChildren<RawImage>()[2].enabled = false;
         ui.GetComponentsInChildren<Text>()[1].enabled = false;
 
-        if (MySceneManager.instance.picturesTaken.Contains("plantcell1"))
+        if (MySceneManager.instance.picturesTaken.Contains("Control Blue"))
         {
             ui.GetComponentsInChildren<RawImage>()[1].enabled = true;
             ui.GetComponentsInChildren<Text>()[0].enabled = true;
 
-            print(ui.GetComponentsInChildren<RawImage>()[1].isActiveAndEnabled);
+        }
+
+        if (MySceneManager.instance.picturesTaken.Contains("Stress Blue"))
+        {
+            ui.GetComponentsInChildren<RawImage>()[2].enabled = true;
+            ui.GetComponentsInChildren<Text>()[1].enabled = true;
         }
 
     }

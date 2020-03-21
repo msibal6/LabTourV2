@@ -138,6 +138,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   replaceMaterial: {fileID: 2100000, guid: 40939a67e06b043a5b809df9fc164673, type: 2}
+  isOutlined: 0
 --- !u!1 &3583695325241790240
 GameObject:
   m_ObjectHideFlags: 0

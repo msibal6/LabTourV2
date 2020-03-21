@@ -7,7 +7,7 @@ public class SlideController : MonoBehaviour
 
 
     private GameObject holder;
-    private int numSlides = 3;
+    private int numSlides = 2;
 
 
     // Start is called before the first frame update
