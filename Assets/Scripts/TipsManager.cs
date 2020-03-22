@@ -10,7 +10,7 @@ public class TipsManager : MonoBehaviour
 
     public InteractionController player;
     public Coroutine runningCoroutine;
-    public Text[] tips;
+    public PopUp[] tips;
     public bool introduced;
     public bool slidesChecked;
     public bool micChecked;
@@ -24,13 +24,14 @@ public class TipsManager : MonoBehaviour
     public bool filterPicTaken;
     public bool noFilterPicTaken;
 
+    private Canvas tipsArea;
+
 
 
 
     // Start is called before the first frame update
     void Start()
     {
-        SceneManager.sceneUnloaded += SceneChangeCoroutine; 
         if (instance == null)
         {
             DontDestroyOnLoad(gameObject);
@@ -41,79 +42,133 @@ public class TipsManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        if(instance.introduced == false)
+        if (instance.introduced == false)
         {
-
-            instance.runningCoroutine = StartCoroutine(DisplayTexts(0, 3, 0.5f));
-
+            instance.runningCoroutine = StartCoroutine(DisplayTips(0, 3, 0.5f));
             instance.introduced = true;
         }
+
+        SceneManager.sceneUnloaded += SceneChangeCoroutine;
+        SceneManager.sceneLoaded += UpdateDisplay;
+
+       
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(pcChecked == false && player.GetRaycastHit().collider.name == "Monitor")
+        Scene currentScene = SceneManager.GetActiveScene();
+        switch (currentScene.name.ToString())
+        {
+            case "LabRoom":
+                ShowLabRoomTips();
+                break;
+            case "NewMicroscopeView":
+                break;
+
+            default:
+                break;
+        }
+
+    }
+
+    private void ShowLabRoomTips()
+    {
+        if (instance.pcChecked == false && player.GetRaycastHit().collider != null && player.GetRaycastHit().collider.name == "Monitor")
         {
             if (instance.runningCoroutine != null)
             {
                 StopCoroutine(instance.runningCoroutine);
                 instance.runningCoroutine = null;
             }
-            pcChecked = true;
-            instance.runningCoroutine = StartCoroutine(DisplayTexts(4, 5, 0.5f));
+            instance.pcChecked = true;
+            instance.runningCoroutine = StartCoroutine(DisplayTips(4, 5, 0.5f));
         }
     }
 
-    IEnumerator DisplayText (Text displayText, float waitTime)
+
+   
+
+    void SceneChangeCoroutine(Scene current)
     {
-        displayText.gameObject.SetActive(true);
-        displayText.enabled = true;
-        yield return new WaitForSeconds(waitTime);
-        displayText.enabled = false;
+
+        if (instance.runningCoroutine != null)
+        {
+            StopCoroutine(instance.runningCoroutine);
+            instance.runningCoroutine = null;
+        }
+
     }
 
-    IEnumerator DisplayTexts(int start, int end, float betweenTime)
+    void UpdateDisplay(Scene scene, LoadSceneMode loadSceneMode)
     {
+        instance.tipsArea = GetComponent<Canvas>();
+        print(instance.tipsArea);
 
-        foreach (Text tip in instance.tips)
+
+    }
+
+    public IEnumerator DisplayTip(PopUp tipToShow, float waitTime)
+    {
+        instance.tipsArea = GetComponent<Canvas>();
+
+        foreach (PopUp tip in instance.tips)
         {
-            if (tip.enabled)
+            if (tip.IsShowing())
             {
-                tip.enabled = false;
+                tip.Close();
+            }
+        }
+        tipToShow.transform.parent.SetParent(instance.tipsArea.transform);
+        tipToShow.gameObject.SetActive(true);
 
-            } 
+        // Showing tip now
+        tipToShow.Display();
+        yield return new WaitForSeconds(waitTime);
+
+        // Closing tip now
+        tipToShow.Close();
+    }
+
+    public IEnumerator DisplayTips(int start, int end, float betweenTime)
+    {
+        instance.tipsArea = GetComponent<Canvas>();
+
+        // Unenabling any text from previous tip
+        foreach (PopUp tip in instance.tips)
+        {
+            if (tip.IsShowing())
+            {
+                tip.Close();
+            }
 
         }
         for (int i = start; i <= end; i++)
         {
-            Text displayText = instance.tips[i];
-            int characters = displayText.text.ToString().Length;
-            // 5 is average word length
 
-            float approxWords = characters / 5;
+            // Calculations for how long to display text 
+            PopUp tip = instance.tips[i];
+            int characters = tip.text.text.Length;
+            float words = characters / 5; // Average number of characters in word
+            float waitTime = words / 250 * 60; // Average reading speed, seconds in minute
 
-            // 200 is average reading words per minute
-            // 60 seconds in a minute
-            // adjust waitTime to length of string
-            float waitTime = approxWords / 250 * 60;
-            displayText.gameObject.SetActive(true);
-            displayText.enabled = true;
+            instance.tipsArea = FindObjectOfType<Canvas>();
+            tip.transform.parent = instance.tipsArea.transform;
+
+            tip.gameObject.SetActive(true);
+
+            // Activation
+            tip.Display();
             yield return new WaitForSeconds(waitTime);
-            displayText.enabled = false;
+
+
+            // De-activation
+            tip.Close();
             yield return new WaitForSeconds(betweenTime);
         }
         instance.runningCoroutine = null;
 
     }
-
-    void SceneChangeCoroutine(Scene current)
-    {
-        
-        StopCoroutine(instance.runningCoroutine);
-        instance.runningCoroutine = null;
-
-    }
-
 
 }

@@ -18,6 +18,13 @@ public class InteractionController : MonoBehaviour
     private bool grabbing;
     private Collider heldObject;
 
+    private TipsManager tipsManager;
+
+    private void Start()
+    {
+        tipsManager = TipsManager.instance;
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -91,6 +98,7 @@ public class InteractionController : MonoBehaviour
                     // Object is a slide
                     if (heldObject.gameObject.CompareTag("Slide"))
                     {
+
                         PickUpSlide(heldObject);
                     }
                 }
@@ -101,6 +109,7 @@ public class InteractionController : MonoBehaviour
             }
             if (hit.collider.gameObject.name == "Monitor")
             {
+                tipsManager.StartCoroutine(tipsManager.DisplayTip(tipsManager.tips[0], 2.5f));
                 MySceneManager.instance.SwitchScene("Computer Screen");
             }
             else if (hit.collider.gameObject.name == "Looking part" || hit.collider.gameObject.name == "Looking part 1")

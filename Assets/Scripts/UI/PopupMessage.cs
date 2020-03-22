@@ -83,6 +83,8 @@ public class PopupMessage : MonoBehaviour
         ui.GetComponentsInChildren<RawImage>()[2].enabled = false;
         ui.GetComponentsInChildren<Text>()[1].enabled = false;
 
+        // TODO
+        // Design a class for images taken
         if (MySceneManager.instance.picturesTaken.Contains("Control Blue"))
         {
             ui.GetComponentsInChildren<RawImage>()[1].enabled = true;
