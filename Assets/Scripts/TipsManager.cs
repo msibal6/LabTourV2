@@ -8,7 +8,6 @@ public class TipsManager : MonoBehaviour
 {
     public static TipsManager instance;
 
-    public InteractionController player;
     public Coroutine runningCoroutine;
     public PopUp[] tips;
     public bool introduced;
@@ -25,6 +24,7 @@ public class TipsManager : MonoBehaviour
     public bool noFilterPicTaken;
 
     private Canvas tipsArea;
+    private PopUp currentPopUp;
 
 
 
@@ -51,13 +51,14 @@ public class TipsManager : MonoBehaviour
         SceneManager.sceneUnloaded += SceneChangeCoroutine;
         SceneManager.sceneLoaded += UpdateDisplay;
 
-       
+
 
     }
 
     // Update is called once per frame
     void Update()
     {
+
         Scene currentScene = SceneManager.GetActiveScene();
         switch (currentScene.name.ToString())
         {
@@ -75,7 +76,10 @@ public class TipsManager : MonoBehaviour
 
     private void ShowLabRoomTips()
     {
-        if (instance.pcChecked == false && player.GetRaycastHit().collider != null && player.GetRaycastHit().collider.name == "Monitor")
+        InteractionController tempPlayer = FindObjectOfType<InteractionController>();
+
+        // Show computer tips
+        if (instance.pcChecked == false && tempPlayer.GetRaycastHit().collider != null && tempPlayer.GetRaycastHit().collider.name == "Monitor")
         {
             if (instance.runningCoroutine != null)
             {
@@ -88,46 +92,46 @@ public class TipsManager : MonoBehaviour
     }
 
 
-   
+
 
     void SceneChangeCoroutine(Scene current)
     {
-
         if (instance.runningCoroutine != null)
         {
+            instance.currentPopUp.transform.parent = gameObject.transform;
             StopCoroutine(instance.runningCoroutine);
             instance.runningCoroutine = null;
         }
-
     }
 
     void UpdateDisplay(Scene scene, LoadSceneMode loadSceneMode)
     {
         instance.tipsArea = GetComponent<Canvas>();
         print(instance.tipsArea);
-
-
     }
 
     public IEnumerator DisplayTip(PopUp tipToShow, float waitTime)
     {
         instance.tipsArea = GetComponent<Canvas>();
 
+        // Disabling previous tips
         foreach (PopUp tip in instance.tips)
         {
             if (tip.IsShowing())
             {
                 tip.Close();
+                tip.transform.parent = gameObject.transform;
             }
         }
+
         tipToShow.transform.parent.SetParent(instance.tipsArea.transform);
         tipToShow.gameObject.SetActive(true);
 
-        // Showing tip now
+        // Showing tip 
         tipToShow.Display();
         yield return new WaitForSeconds(waitTime);
 
-        // Closing tip now
+        // Closing tip 
         tipToShow.Close();
     }
 
@@ -141,9 +145,10 @@ public class TipsManager : MonoBehaviour
             if (tip.IsShowing())
             {
                 tip.Close();
+                tip.transform.parent = gameObject.transform;
             }
-
         }
+
         for (int i = start; i <= end; i++)
         {
 
@@ -154,21 +159,22 @@ public class TipsManager : MonoBehaviour
             float waitTime = words / 250 * 60; // Average reading speed, seconds in minute
 
             instance.tipsArea = FindObjectOfType<Canvas>();
-            tip.transform.parent = instance.tipsArea.transform;
 
-            tip.gameObject.SetActive(true);
 
             // Activation
+            tip.gameObject.SetActive(true);
+            tip.transform.parent = instance.tipsArea.transform;
+            instance.currentPopUp = tip;
             tip.Display();
             yield return new WaitForSeconds(waitTime);
 
-
             // De-activation
             tip.Close();
+            tip.transform.parent = gameObject.transform;
+
             yield return new WaitForSeconds(betweenTime);
         }
+
         instance.runningCoroutine = null;
-
     }
-
 }
