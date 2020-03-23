@@ -7,16 +7,13 @@ using UnityEngine.UI;
 public class SceneChange : MonoBehaviour
 {
 
-	public void ButtonMoveScene (string level)
+    public void ButtonMoveScene(string level)
     {
-		SceneManager.LoadScene(level);
+        SceneManager.LoadScene(level);
 
-	}
+    }
 
-
-
-
-	public void ButtonTakePicture ()
+    public void ButtonTakePicture()
     {
         if (MySceneManager.instance.slideDisplayed != "")
         {
@@ -24,10 +21,7 @@ public class SceneChange : MonoBehaviour
             if (!MySceneManager.instance.picturesTaken.Contains(tempMicroscopeImage))
             {
                 print("took picture of " + tempMicroscopeImage);
-
                 MySceneManager.instance.picturesTaken.Add(tempMicroscopeImage);
-
-              
             }
             else
             {

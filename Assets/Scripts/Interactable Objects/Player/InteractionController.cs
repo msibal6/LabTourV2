@@ -18,12 +18,7 @@ public class InteractionController : MonoBehaviour
     private bool grabbing;
     private Collider heldObject;
 
-    private TipsManager tipsManager;
 
-    private void Start()
-    {
-        tipsManager = TipsManager.instance;
-    }
 
     // Update is called once per frame
     void Update()
@@ -51,7 +46,7 @@ public class InteractionController : MonoBehaviour
             {
 
                 // Looking at an object you can grab
-                if (hit.collider.gameObject.layer == 8)
+                if (hit.collider !=null && hit.collider.gameObject.layer == 8)
                 {
                     heldObject = hit.collider;
                     grabbing = true;
@@ -69,6 +64,11 @@ public class InteractionController : MonoBehaviour
                 // Looking at another object you can grab
                 if (hit.collider == null)
                 {
+                    if (heldObject.gameObject.CompareTag("Slide"))
+                    {
+                        heldObject.gameObject.GetComponent<SlideController>().SetHolder(null);
+                    }
+
                     Release();
                 }
                 else if (heldObject.gameObject.CompareTag("Slide") && hit.collider.gameObject.name == "Slide Bed")
@@ -107,12 +107,12 @@ public class InteractionController : MonoBehaviour
                     Release();
                 }
             }
-            if (hit.collider.gameObject.name == "Monitor")
+            if (hit.collider != null && hit.collider.gameObject.name == "Monitor")
             {
-                tipsManager.StartCoroutine(tipsManager.DisplayTip(tipsManager.tips[0], 2.5f));
                 MySceneManager.instance.SwitchScene("Computer Screen");
             }
-            else if (hit.collider.gameObject.name == "Looking part" || hit.collider.gameObject.name == "Looking part 1")
+            else if (hit.collider != null &&  (hit.collider.gameObject.name == "Looking part"
+                || hit.collider.gameObject.name == "Looking part 1"))
             {
                 MySceneManager.instance.SwitchScene("NewMicroscopeView");
             }
@@ -129,10 +129,6 @@ public class InteractionController : MonoBehaviour
             bool isMoving = System.Math.Abs(Input.GetAxisRaw("Horizontal") + Input.GetAxisRaw("Vertical")) > 0;
             heldObject.transform.position = Vector3.MoveTowards(heldObject.transform.position, holdPoint.transform.position, isMoving ? .08f : 0.05f);
         }
-        else
-        {
-            ;
-        }
     }
 
     public RaycastHit GetRaycastHit()
@@ -142,22 +138,24 @@ public class InteractionController : MonoBehaviour
         return hit;
     }
 
+    public Collider GetHeldObject()
+    {
+        return heldObject;
+
+    }
+
     private void PickUpSlide(Collider slide)
     {
         SlideController tempSlide = slide.gameObject.GetComponent<SlideController>();
 
         // Is the slide in the microscope
-        if (tempSlide.IsHeld())
+        if (tempSlide.GetHolder() != null && tempSlide.GetHolder().name == "Microscope")
         {
 
             // Release the slide from the microscope
             MicroscopeController tempMicro = tempSlide.GetHolder().GetComponent<MicroscopeController>();
             tempMicro.Release();
             tempSlide.SetHolder(gameObject);
-        }
-        else
-        {
-            ;
         }
     }
 

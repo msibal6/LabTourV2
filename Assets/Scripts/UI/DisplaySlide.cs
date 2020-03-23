@@ -19,27 +19,27 @@ public class DisplaySlide : MonoBehaviour
 
                 if (toggleFilter.isOn)
                 {
-                    // Control Red
-                    gameObject.GetComponent<Image>().sprite = slidePictures[2];
+                    // Control Blue
+                    gameObject.GetComponent<Image>().sprite = slidePictures[1];
                 }
                 else
                 {
-                    // Control Blue
-                    gameObject.GetComponent<Image>().sprite = slidePictures[1];
-
+                    // Control Red
+                    gameObject.GetComponent<Image>().sprite = slidePictures[2];
                 }
                 break;
 
             case "Anxious Mouse":
                 if (toggleFilter.isOn)
                 {
-                    // Stress Red
-                    gameObject.GetComponent<Image>().sprite = slidePictures[4];
+                    // Stress Blue
+                    gameObject.GetComponent<Image>().sprite = slidePictures[3];
                 }
                 else
                 {
-                    // Stress Blue
-                    gameObject.GetComponent<Image>().sprite = slidePictures[3];
+                    // Stress Red
+                    gameObject.GetComponent<Image>().sprite = slidePictures[4];
+
                 }
 
                 break;
