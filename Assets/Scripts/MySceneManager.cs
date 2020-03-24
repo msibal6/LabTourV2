@@ -31,20 +31,5 @@ public class MySceneManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-     
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public void SwitchScene(string name)
-    {
-        SceneManager.LoadScene(name);
-
-    }
-
-   
 }

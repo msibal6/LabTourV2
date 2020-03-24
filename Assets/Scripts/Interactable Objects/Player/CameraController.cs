@@ -118,11 +118,11 @@ public class CameraController : MonoBehaviour
             }
             if (hit.collider.gameObject.name == "Monitor")
             {
-                MySceneManager.instance.SwitchScene("Computer Screen");
+                //MySceneManager.instance.SwitchScene("Computer Screen");
             }
             else if (hit.collider.gameObject.name == "Looking part")
             {
-                MySceneManager.instance.SwitchScene("NewMicroscopeView");
+                //MySceneManager.instance.SwitchScene("NewMicroscopeView");
             }
             else
             {

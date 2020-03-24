@@ -234,7 +234,7 @@ PrefabInstance:
     - target: {fileID: 783658642725085482, guid: 8246a92f35bcc458f8e581fc07211980,
         type: 3}
       propertyPath: m_Name
-      value: Mic Usage
+      value: Mic 2
       objectReference: {fileID: 0}
     - target: {fileID: 783658642725085483, guid: 8246a92f35bcc458f8e581fc07211980,
         type: 3}
@@ -1835,19 +1835,6 @@ MonoBehaviour:
   - {fileID: 125626486}
   - {fileID: 913786962}
   - {fileID: 1430975356}
-  introduced: 0
-  slidesChecked: 0
-  micChecked: 0
-  pcChecked: 1
-  allViewed: 0
-  anxiousPicked: 0
-  controlPicked: 0
-  anxiousViewed: 0
-  controlViewed: 0
-  filterViewed: 0
-  noFilterViewed: 0
-  filterPicTaken: 0
-  noFilterPicTaken: 0
 --- !u!4 &779888631
 Transform:
   m_ObjectHideFlags: 0
@@ -3082,7 +3069,7 @@ PrefabInstance:
     - target: {fileID: 783658642725085482, guid: 8246a92f35bcc458f8e581fc07211980,
         type: 3}
       propertyPath: m_Name
-      value: Mic Camera
+      value: Mic 3
       objectReference: {fileID: 0}
     - target: {fileID: 783658642725085483, guid: 8246a92f35bcc458f8e581fc07211980,
         type: 3}
@@ -5226,7 +5213,7 @@ PrefabInstance:
     - target: {fileID: 783658642725085482, guid: 8246a92f35bcc458f8e581fc07211980,
         type: 3}
       propertyPath: m_Name
-      value: Mic Intro
+      value: Mic 1
       objectReference: {fileID: 0}
     - target: {fileID: 783658642725085483, guid: 8246a92f35bcc458f8e581fc07211980,
         type: 3}

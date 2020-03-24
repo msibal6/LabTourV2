@@ -11,11 +11,15 @@ public class PopupMessage : MonoBehaviour
     PopupMessage popupMessage;
     GameObject gameController;
 
+    private PopUp[] picturesTaken;
     // Use this for initialization
     void Start()
     {
+
         gameController = GameObject.Find("GameController");
         popupMessage = gameController.GetComponent<PopupMessage>();
+        picturesTaken = ui.GetComponentsInChildren<PopUp>();
+
     }
 
     // private void OnMouseDown()
@@ -58,6 +62,8 @@ public class PopupMessage : MonoBehaviour
     //        Time.timeScale = 0f;
     //    }
     //}
+
+    // 
     public void Close()
     {
         ui.SetActive(!ui.activeSelf);
@@ -67,7 +73,7 @@ public class PopupMessage : MonoBehaviour
         }
     }
     //You need to have Folder Resources/InvenotryItems
-    public Texture TakeInvenotryCollecition(string LoadCollectionsToInventory)
+    public Texture TakeInvenotryCollection(string LoadCollectionsToInventory)
     {
         Texture loadedGO = Resources.Load("InvenotryItems/" + LoadCollectionsToInventory, typeof(Texture)) as Texture;
         return loadedGO;
@@ -75,28 +81,23 @@ public class PopupMessage : MonoBehaviour
 
     public void Open()
     {
+        // TODO make a whole window  class
+        // Make a class for files folder
         ui.SetActive(true);
-
-        ui.GetComponentsInChildren<RawImage>()[1].enabled = false;
-        ui.GetComponentsInChildren<Text>()[0].enabled = false;
-
-        ui.GetComponentsInChildren<RawImage>()[2].enabled = false;
-        ui.GetComponentsInChildren<Text>()[1].enabled = false;
-
-        // TODO
-        // Design a class for images taken
         if (MySceneManager.instance.picturesTaken.Contains("Control Blue"))
         {
-            ui.GetComponentsInChildren<RawImage>()[1].enabled = true;
-            ui.GetComponentsInChildren<Text>()[0].enabled = true;
+            picturesTaken[0].Display();
+
+
 
         }
 
-        if (MySceneManager.instance.picturesTaken.Contains("Stress Blue"))
-        {
-            ui.GetComponentsInChildren<RawImage>()[2].enabled = true;
-            ui.GetComponentsInChildren<Text>()[1].enabled = true;
-        }
+
+
+        // TODO HIGH
+        // Replace all images taken with the correct PopUps
+
+
 
     }
 

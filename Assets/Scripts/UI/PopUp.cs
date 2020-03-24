@@ -13,8 +13,6 @@ public class PopUp : MonoBehaviour
     {
         image.enabled = false;
         text.enabled = false;
-
-
     }
 
     // Update is called once per frame

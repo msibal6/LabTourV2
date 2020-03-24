@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class InteractionController : MonoBehaviour
 {
@@ -82,7 +83,7 @@ public class InteractionController : MonoBehaviour
                     }
                     else
                     {
-
+                        // TODO 
                         // Placeholder for tooltip that tells there is a slide in the microscope
                         Debug.Log("Theres already A slide in the microscope");
                     }
@@ -109,12 +110,13 @@ public class InteractionController : MonoBehaviour
             }
             if (hit.collider != null && hit.collider.gameObject.name == "Monitor")
             {
-                MySceneManager.instance.SwitchScene("Computer Screen");
+                SceneManager.LoadScene("Computer Screen");
             }
             else if (hit.collider != null &&  (hit.collider.gameObject.name == "Looking part"
                 || hit.collider.gameObject.name == "Looking part 1"))
             {
-                MySceneManager.instance.SwitchScene("NewMicroscopeView");
+                SceneManager.LoadScene("NewMicroscopeView");
+
             }
             else
             {

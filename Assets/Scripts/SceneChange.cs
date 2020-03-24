@@ -26,12 +26,16 @@ public class SceneChange : MonoBehaviour
             else
             {
                 print(tempMicroscopeImage);
+                // todo
+                // Replace with tip PopUp
                 print("you already took this picture");
             }
 
         }
         else
         {
+            // TODO
+            // Replace with a tip PopUp
             Debug.Log("You dont't want to take a picture of nothing");
         }
 

@@ -8,21 +8,22 @@ public class TipsManager : MonoBehaviour
 {
     public static TipsManager instance;
 
-    public Coroutine runningDisplay;
     public PopUp[] tips;
-    public bool introduced;
-    public bool slidesChecked;
-    public bool micChecked;
-    public bool pcChecked;
-    public bool allViewed;
-    public bool anxiousPicked;
-    public bool controlPicked;
-    public bool anxiousViewed;
-    public bool controlViewed;
-    public bool filterViewed;
-    public bool noFilterViewed;
-    public bool filterPicTaken;
-    public bool noFilterPicTaken;
+    private bool introduced;
+    private bool slidesChecked;
+    private bool micChecked;
+    private bool pcChecked;
+    private bool allViewed;
+    private bool anxiousPicked;
+    private bool controlPicked;
+    private bool anxiousViewed;
+    private  bool controlViewed;
+    private bool filterViewed;
+    private bool noFilterViewed;
+    private bool filterPicTaken;
+    private bool noFilterPicTaken;
+
+    private Coroutine runningDisplay;
 
     private Canvas tipsArea;
     private PopUp currentPopUp;
@@ -108,10 +109,13 @@ public class TipsManager : MonoBehaviour
         if (instance.noFilterPicTaken == false && MySceneManager.instance.slideDisplayed != "")
         {
             Button button = FindObjectOfType<Button>();
+            Toggle filter = FindObjectOfType<Toggle>();
+
             button.onClick.AddListener(DisplayNoFilterTaken);
+
             void DisplayNoFilterTaken()
             {
-                if (instance.noFilterPicTaken == false)
+                if (instance.noFilterPicTaken == false && !filter.isOn)
                 {
                     instance.noFilterPicTaken = true;
                     instance.runningDisplay = StartCoroutine(DisplayTip(19, 2.5f, true));
@@ -228,6 +232,8 @@ public class TipsManager : MonoBehaviour
         instance.runningDisplay = null;
     }
 
+    // TODO
+    // Display tip group which checks if its a tip group 
     public IEnumerator DisplayTips(int start, int end, float betweenTime, bool waiting = false)
     {
 
