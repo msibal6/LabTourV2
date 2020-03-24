@@ -54,7 +54,7 @@ public class TipsManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        // TODO Fix tips displaying across scenes
         Scene currentScene = SceneManager.GetActiveScene();
         switch (currentScene.name.ToString())
         {
@@ -232,7 +232,7 @@ public class TipsManager : MonoBehaviour
         instance.runningDisplay = null;
     }
 
-    // TODO
+    // HACK FUTURE
     // Display tip group which checks if its a tip group 
     public IEnumerator DisplayTips(int start, int end, float betweenTime, bool waiting = false)
     {

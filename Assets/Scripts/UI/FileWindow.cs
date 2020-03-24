@@ -15,7 +15,8 @@ public class FileWindow : MonoBehaviour
     void Start()
     {
         fileBackground.enabled = false;
-        // TODO replace button with just image
+        // TODO
+        // Make a button class that 
         exitButton.enabled = false;
         exitButton.GetComponentInChildren<Text>().enabled = false;
         exitButton.GetComponent<Image>().enabled = false;
@@ -31,11 +32,25 @@ public class FileWindow : MonoBehaviour
 
     }
 
-    void ShowPictures()
+    private void ShowPictures()
     {
+        // HACK FUTURE
+        // Just show pictures that they have taken
         if (MySceneManager.instance.picturesTaken.Contains("Control Blue"))
         {
             files[0].Display();
+        }
+        if (MySceneManager.instance.picturesTaken.Contains("Control Red"))
+        {
+            files[1].Display();
+        }
+        if (MySceneManager.instance.picturesTaken.Contains("Stress Blue"))
+        {
+            files[2].Display();
+        }
+        if (MySceneManager.instance.picturesTaken.Contains("Stress Red"))
+        {
+            files[3].Display();
         }
     }
 
@@ -51,7 +66,6 @@ public class FileWindow : MonoBehaviour
 
     private void ClosePictures()
     {
-
         foreach (PopUp file in files)
         {
             if (file.IsShowing())
@@ -60,5 +74,4 @@ public class FileWindow : MonoBehaviour
             }
         }
     }
-
 }
