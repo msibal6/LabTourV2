@@ -20,7 +20,17 @@ public class InteractionController : MonoBehaviour
     private Collider heldObject;
 
 
+    void Start()
+    {
 
+        // Initializes using instance after first switch to LabRoom scene
+        if (MySceneManager.instance)
+        {
+            transform.localRotation = MySceneManager.instance.playerRot;
+        }
+
+       
+    }
     // Update is called once per frame
     void Update()
     {
@@ -173,5 +183,11 @@ public class InteractionController : MonoBehaviour
         // Draws a 5 unit long red line in front of the object
         Gizmos.color = Color.red;
         Gizmos.DrawRay(transform.position, transform.forward * 100);
+    }
+
+    private void OnDestroy()
+    {
+        print("current rotation" + transform.rotation.ToString());
+        MySceneManager.instance.playerRot = transform.localRotation;
     }
 }

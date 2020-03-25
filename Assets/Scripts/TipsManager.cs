@@ -9,6 +9,11 @@ public class TipsManager : MonoBehaviour
     public static TipsManager instance;
 
     public PopUp[] tips;
+    public bool controlOverlayChecked;
+    public bool anxiousOverlayChecked;
+    public bool anxiousViewed;
+    public bool controlViewed;
+
     private bool introduced;
     private bool slidesChecked;
     private bool micChecked;
@@ -16,8 +21,6 @@ public class TipsManager : MonoBehaviour
     private bool allViewed;
     private bool anxiousPicked;
     private bool controlPicked;
-    public bool anxiousViewed;
-    public bool controlViewed;
     private bool filterViewed;
     private bool noFilterViewed;
     private bool filterPicTaken;
@@ -191,6 +194,7 @@ public class TipsManager : MonoBehaviour
         if (instance.allViewed == false && instance.pcChecked == true
             && instance.micChecked == true && instance.slidesChecked == true)
         {
+            CloseRunningDisplay();
             instance.allViewed = true;
             instance.runningDisplay = StartCoroutine(DisplayTips(13, 14, 0.5f, true));
         }
@@ -206,15 +210,11 @@ public class TipsManager : MonoBehaviour
 
         instance.tipsArea = GetComponentInChildren<Canvas>();
         PopUp tip = instance.tips[index];
-        instance.tipsArea = GetComponentInChildren<Canvas>();
-
-        // Disabling previous tips
         DisablePreviousTips();
+        //tip.gameObject.SetActive(true);
 
+        // Showing tip
         tip.transform.parent = instance.tipsArea.transform;
-        tip.gameObject.SetActive(true);
-
-        // Showing tip 
         tip.Display();
         instance.currentPopUp = tip;
 
@@ -223,6 +223,8 @@ public class TipsManager : MonoBehaviour
         // Closing tip 
         tip.Close();
         tip.transform.parent = gameObject.transform;
+
+        instance.currentPopUp = null;
         instance.runningDisplay = null;
     }
 
@@ -247,10 +249,10 @@ public class TipsManager : MonoBehaviour
             PopUp tip = instance.tips[i];
             int characters = tip.text.text.Length;
             float words = characters / 5; // Average number of characters in word
-            float waitTime = words / 250 * 60; // Average reading speed, seconds in minute
+            float waitTime = words / 300 * 60; // Average reading speed, seconds in minute
 
             // Activation
-            tip.gameObject.SetActive(true);
+            //tip.gameObject.SetActive(true);
             tip.transform.parent = instance.tipsArea.transform;
             instance.currentPopUp = tip;
             tip.Display();
@@ -263,34 +265,47 @@ public class TipsManager : MonoBehaviour
             yield return new WaitForSeconds(betweenTime);
         }
 
+        instance.currentPopUp = null;
         instance.runningDisplay = null;
     }
 
+    // Disabling tips when changing from one tip to the next within the same scene
+    // there really should only be one tip 
     private void DisablePreviousTips()
     {
-        foreach (PopUp tip in instance.tips)
+        //foreach (PopUp tip in instance.tips)
+        //{
+        //    if (tip.IsShowing())
+        //    {
+        //        tip.Close();
+        //        tip.transform.parent = gameObject.transform;
+        //    }
+        //}
+        if (instance.currentPopUp != null && instance.runningDisplay != null)
         {
-            if (tip.IsShowing())
-            {
-                tip.Close();
-                tip.transform.parent = gameObject.transform;
-            }
+            PopUp tip = instance.currentPopUp;
+            tip.Close();
+            tip.transform.parent = gameObject.transform;
+            instance.currentPopUp = null;
+
         }
+
     }
 
     private void CloseRunningDisplay()
     {
-        if (instance.runningDisplay != null)
+        if (instance.runningDisplay != null && instance.currentPopUp != null)
         {
-
+            // Reassigning the PopUp to be TipManager child
             instance.currentPopUp.transform.parent = gameObject.transform;
+            instance.currentPopUp.Close();
             instance.currentPopUp = null;
             StopCoroutine(instance.runningDisplay);
             instance.runningDisplay = null;
         }
     }
 
-    // Recall our PopUps if we are changing scenes but still have PopUps displaying
+    // Recall our PopUp if we are changing scenes but still have PopUp displaying
     void SceneChangeCoroutine(Scene current)
     {
         CloseRunningDisplay();

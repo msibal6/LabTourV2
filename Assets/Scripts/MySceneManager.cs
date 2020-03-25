@@ -13,6 +13,7 @@ public class MySceneManager : MonoBehaviour
     public List<string> slideNames;
     public List<string> picturesTaken;
     public Vector3 playerPos;
+    public Quaternion playerRot;
     public string slideDisplayed;
 
 

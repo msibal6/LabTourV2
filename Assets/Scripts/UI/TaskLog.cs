@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 
@@ -9,11 +7,9 @@ public class TaskLog : MonoBehaviour
     public Image background;
     public Task[] tasks;
     // 
-    private bool controlOverlayChecked;
-    private bool anxiousOverlayChecked;
+   
 
 
-    // TODO check off looking at the correct overlays
 
 
 
@@ -52,22 +48,32 @@ public class TaskLog : MonoBehaviour
             tasks[6].CheckOff();
         }
 
+        if (TipsManager.instance.controlOverlayChecked)
+        {
+            tasks[3].CheckOff();
+        }
+
+        if (TipsManager.instance.anxiousOverlayChecked)
+        {
+            tasks[7].CheckOff();
+        }
 
     }
 
     public void CheckOverlays()
     {
-        if (MySceneManager.instance.picturesTaken.Contains("Control Red")
+        if (!TipsManager.instance.controlOverlayChecked && MySceneManager.instance.picturesTaken.Contains("Control Red")
             && MySceneManager.instance.picturesTaken.Contains("Control Blue"))
         {
+            TipsManager.instance.controlOverlayChecked = true;
             tasks[3].CheckOff();
 
         }
 
-        if (MySceneManager.instance.picturesTaken.Contains("Stress Red")
+        if (!TipsManager.instance.anxiousOverlayChecked && MySceneManager.instance.picturesTaken.Contains("Stress Red")
         && MySceneManager.instance.picturesTaken.Contains("Stress Blue"))
-
         {
+            TipsManager.instance.anxiousOverlayChecked = true;
             tasks[7].CheckOff();
         }
     }
