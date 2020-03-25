@@ -16,8 +16,8 @@ public class TipsManager : MonoBehaviour
     private bool allViewed;
     private bool anxiousPicked;
     private bool controlPicked;
-    private bool anxiousViewed;
-    private  bool controlViewed;
+    public bool anxiousViewed;
+    public bool controlViewed;
     private bool filterViewed;
     private bool noFilterViewed;
     private bool filterPicTaken;
@@ -68,12 +68,10 @@ public class TipsManager : MonoBehaviour
             default:
                 break;
         }
-
     }
 
     private void ShowMicroscopeTips()
     {
-
         if (instance.anxiousViewed == false && MySceneManager.instance.slideDisplayed == "Anxious Mouse")
         {
             CloseRunningDisplay();
@@ -92,7 +90,6 @@ public class TipsManager : MonoBehaviour
         {
             instance.noFilterViewed = true;
             instance.runningDisplay = StartCoroutine(DisplayTip(17, 2.5f, true));
-
         }
 
         if (instance.filterViewed == false && MySceneManager.instance.slideDisplayed != "")
@@ -102,7 +99,6 @@ public class TipsManager : MonoBehaviour
             {
                 instance.filterViewed = true;
                 instance.runningDisplay = StartCoroutine(DisplayTip(18, 2.5f, true));
-
             }
         }
 
@@ -110,7 +106,6 @@ public class TipsManager : MonoBehaviour
         {
             Button button = FindObjectOfType<Button>();
             Toggle filter = FindObjectOfType<Toggle>();
-
             button.onClick.AddListener(DisplayNoFilterTaken);
 
             void DisplayNoFilterTaken()
@@ -120,7 +115,6 @@ public class TipsManager : MonoBehaviour
                     instance.noFilterPicTaken = true;
                     instance.runningDisplay = StartCoroutine(DisplayTip(19, 2.5f, true));
                 }
-
             }
         }
 
