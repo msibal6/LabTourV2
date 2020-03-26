@@ -13,7 +13,7 @@ public class TipsManager : MonoBehaviour
     public bool anxiousViewed;
     public bool controlViewed;
     public PopUp[] tips;
-    
+
 
     private bool introduced;
     private bool slidesChecked;
@@ -28,6 +28,7 @@ public class TipsManager : MonoBehaviour
     private bool noFilterPicTaken;
 
     private Coroutine runningDisplay;
+    private Queue<Coroutine> queue;
 
     private Canvas tipsArea;
     private PopUp currentPopUp;
@@ -53,6 +54,7 @@ public class TipsManager : MonoBehaviour
         }
 
         SceneManager.sceneUnloaded += SceneChangeCoroutine;
+        //SceneManager.sceneLoaded += StopDisplay;
     }
 
     // Update is called once per frame
@@ -78,14 +80,14 @@ public class TipsManager : MonoBehaviour
     {
         if (instance.anxiousViewed == false && MySceneManager.instance.slideDisplayed == "Anxious Mouse")
         {
-            CloseRunningDisplay();
+            //CloseRunningDisplay();
             instance.anxiousViewed = true;
             instance.runningDisplay = StartCoroutine(DisplayTip(15, 2.5f));
         }
 
         if (instance.controlViewed == false && MySceneManager.instance.slideDisplayed == "Control Mouse")
         {
-            CloseRunningDisplay();
+            //CloseRunningDisplay();
             instance.controlViewed = true;
             instance.runningDisplay = StartCoroutine(DisplayTip(16, 2.5f));
         }
@@ -149,7 +151,7 @@ public class TipsManager : MonoBehaviour
             tempPlayer.GetRaycastHit().collider.name == "Monitor")
         {
             // Handle interrupt another tip 
-            CloseRunningDisplay();
+            //CloseRunningDisplay();
             instance.pcChecked = true;
             instance.runningDisplay = StartCoroutine(DisplayTips(4, 5, 0.5f));
         }
@@ -159,7 +161,7 @@ public class TipsManager : MonoBehaviour
             (tempPlayer.GetRaycastHit().collider.name == "Looking part" ||
             tempPlayer.GetRaycastHit().collider.name == "Looking part 1"))
         {
-            CloseRunningDisplay();
+            //CloseRunningDisplay();
             instance.micChecked = true;
             instance.runningDisplay = StartCoroutine(DisplayTips(6, 8, 0.5f));
         }
@@ -168,7 +170,7 @@ public class TipsManager : MonoBehaviour
         if (instance.slidesChecked == false && tempPlayer.GetRaycastHit().collider != null &&
             tempPlayer.GetRaycastHit().collider.CompareTag("Slide"))
         {
-            CloseRunningDisplay();
+            //CloseRunningDisplay();
             instance.slidesChecked = true;
             instance.runningDisplay = StartCoroutine(DisplayTips(9, 10, 0.5f));
         }
@@ -177,16 +179,15 @@ public class TipsManager : MonoBehaviour
         if (instance.anxiousPicked == false && tempPlayer.GetHeldObject() != null
             && tempPlayer.GetHeldObject().name == "Anxious Mouse")
         {
-            CloseRunningDisplay();
+            //CloseRunningDisplay();
             instance.anxiousPicked = true;
             instance.runningDisplay = StartCoroutine(DisplayTip(11, 2f));
-
         }
 
         if (instance.controlPicked == false && tempPlayer.GetHeldObject() != null
             && tempPlayer.GetHeldObject().name == "Control Mouse")
         {
-            CloseRunningDisplay();
+            //CloseRunningDisplay();
             instance.controlPicked = true;
             instance.runningDisplay = StartCoroutine(DisplayTip(12, 2f));
         }
@@ -195,7 +196,7 @@ public class TipsManager : MonoBehaviour
         if (instance.allViewed == false && instance.pcChecked == true
             && instance.micChecked == true && instance.slidesChecked == true)
         {
-            CloseRunningDisplay();
+            //CloseRunningDisplay();
             instance.allViewed = true;
             instance.runningDisplay = StartCoroutine(DisplayTips(13, 14, 0.5f, true));
         }
@@ -208,10 +209,14 @@ public class TipsManager : MonoBehaviour
         {
             while (instance.runningDisplay != null) yield return new WaitForSeconds(0.1f);
         }
+        else
+        {
+            DisablePreviousTip();
+        }
 
         instance.tipsArea = GetComponentInChildren<Canvas>();
         PopUp tip = instance.tips[index];
-        DisablePreviousTips();
+        //DisablePreviousTips();
         //tip.gameObject.SetActive(true);
 
         // Showing tip
@@ -239,9 +244,14 @@ public class TipsManager : MonoBehaviour
         {
             while (instance.runningDisplay != null) yield return new WaitForSeconds(0.1f);
         }
+        else
+        {
+            DisablePreviousTip();
+        }
+
         instance.tipsArea = GetComponentInChildren<Canvas>();
 
-        DisablePreviousTips();
+        //DisablePreviousTips();
 
         for (int i = start; i <= end; i++)
         {
@@ -272,7 +282,7 @@ public class TipsManager : MonoBehaviour
 
     // Disabling tips when changing from one tip to the next within the same scene
     // there really should only be one tip 
-    private void DisablePreviousTips()
+    private void DisablePreviousTip()
     {
         //foreach (PopUp tip in instance.tips)
         //{
@@ -288,6 +298,8 @@ public class TipsManager : MonoBehaviour
             tip.Close();
             tip.transform.parent = gameObject.transform;
             instance.currentPopUp = null;
+            StopCoroutine(instance.runningDisplay);
+            instance.runningDisplay = null;
 
         }
 
@@ -311,5 +323,22 @@ public class TipsManager : MonoBehaviour
     {
         CloseRunningDisplay();
 
+        foreach (PopUp tip in instance.tips)
+        {
+            if (tip.IsShowing())
+            {
+                tip.Close();
+                tip.transform.parent = gameObject.transform;
+            }
+        }
+        StopAllCoroutines();
+
     }
+
+    //void StopDisplay (Scene scene, LoadSceneMode loadSceneMode)
+    //{
+
+
+
+    //}
 }
