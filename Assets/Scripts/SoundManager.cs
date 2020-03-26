@@ -7,11 +7,12 @@ public class SoundManager : MonoBehaviour
     public static SoundManager instance;
     public AudioPlayer[] audios;
 
-
+    private bool slideIn;
     private bool wasHolding;
     private Collider heldObject;
     private Collider hitObject;
     private InteractionController playerControl;
+    private MicroscopeController microscope;
 
 
 
@@ -59,13 +60,13 @@ public class SoundManager : MonoBehaviour
             playerControl = FindObjectOfType<InteractionController>();
         }
 
-        if (playerControl.GetRaycastHit().collider != null)
+        if (microscope == null)
         {
-            hitObject = playerControl.GetRaycastHit().collider;
+            microscope = FindObjectOfType<MicroscopeController>();
         }
 
+        hitObject = playerControl.GetRaycastHit().collider;
         heldObject = playerControl.HeldObject;
-
 
         if (wasHolding == false && heldObject != null && heldObject.CompareTag("Slide"))
         {
@@ -73,11 +74,24 @@ public class SoundManager : MonoBehaviour
             audios[0].Play();
         }
 
-        if (Input.GetMouseButtonDown(0) && wasHolding && hitObject.gameObject.name == "Slide Bed")
-        {
-            audios[1].Play();
-            wasHolding = false;
+        // Insert Slide into Microscope slide
+        //if (Input.GetMouseButtonDown(0) && wasHolding && hitObject != null
+        //    && hitObject.gameObject.name == "Slide Bed")
+        //{
+        //    audios[1].Play();
+        //    wasHolding = false;
 
+        //}
+
+        if (!slideIn && microscope.GetSlideName() != "")
+        {
+            slideIn = true;
+            audios[1].Play();
+        }
+
+        if (slideIn && microscope.GetSlideName() == "")
+        {
+            slideIn = false;
         }
 
         if (wasHolding && heldObject == null)
@@ -90,7 +104,8 @@ public class SoundManager : MonoBehaviour
     private void PlayComputerSounds()
     {
 
-        if( Input.GetMouseButtonDown(0))
+
+        if (Input.GetMouseButtonDown(0))
         {
             audios[2].Play();
         }

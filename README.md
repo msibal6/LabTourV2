@@ -3,4 +3,4 @@ Version 2 of Lab Tour Repo
 
 
 # Requirements 
-To correctly load all scenes, you must download the models from the Google models folder and bring them into the correct folder in Unity.
+To correctly load the game, make sure that your pull properly loads all the .meta files from the git repo

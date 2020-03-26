@@ -22,11 +22,6 @@ public class MicroscopeController : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
 
     public void Place(GameObject slideToPlace)
@@ -54,7 +49,11 @@ public class MicroscopeController : MonoBehaviour
 
     public string GetSlideName()
     {
-        return placedSlide.gameObject.name;
+        if (placedSlide != null)
+        {
+            return placedSlide.gameObject.name;
+        }
+        return "";
     }
     
 
