@@ -121,6 +121,7 @@ public class InteractionController : MonoBehaviour
                     Release();
                 }
             }
+
             if (hit.collider != null && hit.collider.gameObject.name == "Monitor")
             {
                 SceneManager.LoadScene("Computer Screen");
@@ -129,7 +130,6 @@ public class InteractionController : MonoBehaviour
                 || hit.collider.gameObject.name == "Looking part 1"))
             {
                 SceneManager.LoadScene("NewMicroscopeView");
-
             }
             else
             {

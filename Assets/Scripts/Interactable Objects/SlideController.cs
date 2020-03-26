@@ -23,12 +23,6 @@ public class SlideController : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     public bool IsHeld()
     {
         return holder != null;
