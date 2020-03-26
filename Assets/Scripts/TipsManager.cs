@@ -8,11 +8,12 @@ public class TipsManager : MonoBehaviour
 {
     public static TipsManager instance;
 
-    public PopUp[] tips;
     public bool controlOverlayChecked;
     public bool anxiousOverlayChecked;
     public bool anxiousViewed;
     public bool controlViewed;
+    public PopUp[] tips;
+    
 
     private bool introduced;
     private bool slidesChecked;

@@ -6,19 +6,22 @@ using UnityEngine.SceneManagement;
 public class InteractionController : MonoBehaviour
 {
     public Transform holdPoint;
+
     public float mouseSens;
-
-    private float yaw;
-    private float pitch;
-
     public float maxInteractionDistance;
-
     public float maxVertical = 30f;
     public float maxHorizontal = 30f;
 
+    //private Collider heldObject;
+
+    private float yaw;
+    private float pitch;
     private bool grabbing;
     private Collider heldObject;
 
+    private RaycastHit hit;
+
+    public Collider HeldObject { get => heldObject; private set => heldObject = value; }
 
     void Start()
     {
@@ -29,7 +32,7 @@ public class InteractionController : MonoBehaviour
             transform.localRotation = MySceneManager.instance.playerRot;
         }
 
-       
+
     }
     // Update is called once per frame
     void Update()
@@ -46,7 +49,7 @@ public class InteractionController : MonoBehaviour
         Ray ray = new Ray(transform.position, transform.forward);
 
         // Looking to determine if there is something to interact with
-        Physics.Raycast(ray, out RaycastHit hit, maxInteractionDistance);
+        Physics.Raycast(ray, out hit, maxInteractionDistance);
 
         // You try to grab here
         if (Input.GetMouseButtonDown(0))
@@ -57,15 +60,15 @@ public class InteractionController : MonoBehaviour
             {
 
                 // Looking at an object you can grab
-                if (hit.collider !=null && hit.collider.gameObject.layer == 8)
+                if (hit.collider != null && hit.collider.gameObject.layer == 8)
                 {
-                    heldObject = hit.collider;
+                    HeldObject = hit.collider;
                     grabbing = true;
 
                     // Object is a slide
-                    if (heldObject.gameObject.CompareTag("Slide"))
+                    if (HeldObject.gameObject.CompareTag("Slide"))
                     {
-                        PickUpSlide(heldObject);
+                        PickUpSlide(HeldObject);
                     }
                 }
             }
@@ -75,20 +78,20 @@ public class InteractionController : MonoBehaviour
                 // Looking at another object you can grab
                 if (hit.collider == null)
                 {
-                    if (heldObject.gameObject.CompareTag("Slide"))
+                    if (HeldObject.gameObject.CompareTag("Slide"))
                     {
-                        heldObject.gameObject.GetComponent<SlideController>().SetHolder(null);
+                        HeldObject.gameObject.GetComponent<SlideController>().SetHolder(null);
                     }
 
                     Release();
                 }
-                else if (heldObject.gameObject.CompareTag("Slide") && hit.collider.gameObject.name == "Slide Bed")
+                else if (HeldObject.gameObject.CompareTag("Slide") && hit.collider.gameObject.name == "Slide Bed")
                 {
                     MicroscopeController tempMicroscopeController = hit.collider.transform.parent.gameObject.GetComponent<MicroscopeController>();
                     if (!tempMicroscopeController.ContainSlide())
                     {
-                        tempMicroscopeController.Place(heldObject.gameObject);
-                        heldObject.gameObject.GetComponent<SlideController>().SetHolder(tempMicroscopeController.gameObject);
+                        tempMicroscopeController.Place(HeldObject.gameObject);
+                        HeldObject.gameObject.GetComponent<SlideController>().SetHolder(tempMicroscopeController.gameObject);
                         Release();
                     }
                     else
@@ -103,14 +106,14 @@ public class InteractionController : MonoBehaviour
                 else if (hit.collider.gameObject.layer == 8)
                 {
                     Release();
-                    heldObject = hit.collider;
+                    HeldObject = hit.collider;
                     grabbing = true;
 
                     // Object is a slide
-                    if (heldObject.gameObject.CompareTag("Slide"))
+                    if (HeldObject.gameObject.CompareTag("Slide"))
                     {
 
-                        PickUpSlide(heldObject);
+                        PickUpSlide(HeldObject);
                     }
                 }
                 else
@@ -122,7 +125,7 @@ public class InteractionController : MonoBehaviour
             {
                 SceneManager.LoadScene("Computer Screen");
             }
-            else if (hit.collider != null &&  (hit.collider.gameObject.name == "Looking part"
+            else if (hit.collider != null && (hit.collider.gameObject.name == "Looking part"
                 || hit.collider.gameObject.name == "Looking part 1"))
             {
                 SceneManager.LoadScene("NewMicroscopeView");
@@ -139,20 +142,20 @@ public class InteractionController : MonoBehaviour
         if (grabbing)
         {
             bool isMoving = System.Math.Abs(Input.GetAxisRaw("Horizontal") + Input.GetAxisRaw("Vertical")) > 0;
-            heldObject.transform.position = Vector3.MoveTowards(heldObject.transform.position, holdPoint.transform.position, isMoving ? .08f : 0.05f);
+            HeldObject.transform.position = Vector3.MoveTowards(HeldObject.transform.position, holdPoint.transform.position, isMoving ? .08f : 0.05f);
         }
     }
 
     public RaycastHit GetRaycastHit()
     {
-        Ray ray = new Ray(transform.position, transform.forward);
-        Physics.Raycast(ray, out RaycastHit hit, maxInteractionDistance);
+        //Ray ray = new Ray(transform.position, transform.forward);
+        //Physics.Raycast(ray, out RaycastHit hit, maxInteractionDistance);
         return hit;
     }
 
     public Collider GetHeldObject()
     {
-        return heldObject;
+        return HeldObject;
 
     }
 
@@ -174,7 +177,7 @@ public class InteractionController : MonoBehaviour
     private void Release()
     {
         grabbing = false;
-        heldObject = null;
+        HeldObject = null;
     }
 
     void OnDrawGizmos()
@@ -187,7 +190,6 @@ public class InteractionController : MonoBehaviour
 
     private void OnDestroy()
     {
-        print("current rotation" + transform.rotation.ToString());
         MySceneManager.instance.playerRot = transform.localRotation;
     }
 }
