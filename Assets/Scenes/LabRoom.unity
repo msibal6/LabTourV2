@@ -877,12 +877,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.9245283, g: 0.8865214, b: 0.2921858, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4752ad519fbb44b98938e48fabd44735, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -919,8 +919,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -6, y: -233}
-  m_SizeDelta: {x: 700, y: 100}
+  m_AnchoredPosition: {x: 31, y: 304.4}
+  m_SizeDelta: {x: 849.5, y: 151}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &540732301
 GameObject:
@@ -986,8 +986,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 5.2, y: 18.5}
-  m_SizeDelta: {x: 599.2, y: 37}
+  m_AnchoredPosition: {x: 4.5, y: 12.6}
+  m_SizeDelta: {x: 805, y: 85.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &561275246
 MonoBehaviour:
@@ -1002,13 +1002,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 997a43b767814dd0a7642ec9b78cba41, type: 3}
     m_FontSize: 30
     m_FontStyle: 0
     m_BestFit: 1
@@ -1065,7 +1065,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -252, y: -15}
+  m_AnchoredPosition: {x: -318, y: -45}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &615478824
@@ -2955,7 +2955,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 239, y: -15}
+  m_AnchoredPosition: {x: 327, y: -45}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1755013454
@@ -3482,14 +3482,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 2099445161}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62f89328027d3461387c88a6399c3474, type: 3}
+  m_Script: {fileID: 11500000, guid: 60931a02699f64d6781ec018a46f6a8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   dialogue: 
   dialogueLines:
-  - there
-  - are
-  - stuff
+  - 
+  - 
 --- !u!1001 &2133722233
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -9,7 +9,6 @@ public class DialogueManager : MonoBehaviour
     public GameObject dBox;
 	public Text dText;
     public bool dialogActive;
-    [TextArea(3, 10)]
 	public string[] dialogLines; 
     public int currentLine;
 
@@ -40,7 +39,7 @@ public class DialogueManager : MonoBehaviour
     }
 
     public void PrevText(){
-        if (currentLine >= 0){
+        if (currentLine > 0){
             currentLine--;
         }
         
