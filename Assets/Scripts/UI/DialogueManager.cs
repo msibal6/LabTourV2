@@ -6,50 +6,54 @@ using UnityEngine.UI;
 public class DialogueManager : MonoBehaviour
 {
 
-	public Text nameText;
-	public Text dialogueText;
-	public Animator animator;
-	private Queue<string> sentences; 
-
+    public GameObject dBox;
+	public Text dText;
+    public bool dialogActive;
+	public string[] dialogLines; 
+    public int currentLine;
 
 	// Start a new queue of sentences to display
     void Start()
     {
-        sentences = new Queue<string>();
+        //sentences = new Queue<string>();
     }
+
 
     // Box and first message are displayed
-    public void StartDialogue (Dialogue dialogue)
-    {
+    public void DisplayText(){
+        if (dialogActive) {
+            // dBox.SetActive(false);
+            // dialogActive = false;
 
-    	animator.SetBool("isOpen", true);
-    	nameText.text = dialogue.name;
+            currentLine++;
+        }
 
-    	sentences.Clear();
+        if(currentLine >= dialogLines.Length)
+        {
+            dBox.SetActive(false);
+            dialogActive = false;
+            currentLine = 0;
+        }
 
-    	foreach (string sentence in dialogue.sentences)
-    	{
-    		sentences.Enqueue(sentence);
-    	}
-
-    	DisplayNextSentence();
+        dText.text = dialogLines[currentLine];
     }
 
-    // Continue to display messages until the end
-    public void DisplayNextSentence()
-    {
-    	if (sentences.Count == 0)
-    	{
-    		EndDialogue();
-    		return;
-    	}
-    	string sentence = sentences.Dequeue();
-    	dialogueText.text = sentence;
+    public void PrevText(){
+        if (currentLine > 0){
+            currentLine--;
+        }
+        
+        dText.text = dialogLines[currentLine];
     }
 
-    // Stop displaying messages and box disappears
-    void EndDialogue(){
-    	animator.SetBool("isOpen", false);
+    public void ShowBox(string dialogue){
+        dialogActive = true;
+        dBox.SetActive(true);
+        dText.text = dialogue;
     }
 
+    public void ShowDialogue(){
+        dialogActive = true;
+        dBox.SetActive(true);
+    }
 }
