@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4366756, g: 0.48427135, b: 0.56452316, a: 1}
+  m_IndirectSpecularColor: {r: 0.43667588, g: 0.48427194, b: 0.564524, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1066,16 +1066,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 2845374075728546383, guid: 6d382c425fbd7425e84366d37529762b,
-        type: 3}
-      propertyPath: m_Name
-      value: Looking part
-      objectReference: {fileID: 0}
-    - target: {fileID: 2853410873416866011, guid: 6d382c425fbd7425e84366d37529762b,
-        type: 3}
-      propertyPath: m_Name
-      value: Looking part 1
-      objectReference: {fileID: 0}
     - target: {fileID: -4292809215615720832, guid: 6d382c425fbd7425e84366d37529762b,
         type: 3}
       propertyPath: m_Name
@@ -1162,6 +1152,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -3105160532357560465, guid: 6d382c425fbd7425e84366d37529762b,
         type: 3}
+    - target: {fileID: 2845374075728546383, guid: 6d382c425fbd7425e84366d37529762b,
+        type: 3}
+      propertyPath: m_Name
+      value: Looking part
+      objectReference: {fileID: 0}
+    - target: {fileID: 2853410873416866011, guid: 6d382c425fbd7425e84366d37529762b,
+        type: 3}
+      propertyPath: m_Name
+      value: Looking part 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3356260016121597226, guid: 6d382c425fbd7425e84366d37529762b,
         type: 3}
       propertyPath: m_Materials.Array.size
@@ -3750,8 +3750,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.7411867, y: 2.1898236, z: 4.8727636}
-  m_Center: {x: -0.7494219, y: 4.1872005, z: 5.1475}
+  m_Size: {x: 1.7411867, y: 2.1898236, z: 3.00395}
+  m_Center: {x: -0.7494219, y: 4.1872005, z: 6.081907}
 --- !u!65 &1468617007
 BoxCollider:
   m_ObjectHideFlags: 0
