@@ -28,7 +28,6 @@ public class TipsManager : MonoBehaviour
     private bool noFilterPicTaken;
 
     private Coroutine runningDisplay;
-    private Queue<Coroutine> queue;
 
     private Canvas tipsArea;
     private PopUp currentPopUp;

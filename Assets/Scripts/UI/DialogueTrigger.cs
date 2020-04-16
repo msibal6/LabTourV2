@@ -7,7 +7,6 @@ public class DialogueTrigger : MonoBehaviour
 {
 	public string dialogue;
 	private DialogueManager dMAn;
-
 	[TextArea(3, 10)]
 	public string[] dialogueLines;
 
@@ -18,13 +17,9 @@ public class DialogueTrigger : MonoBehaviour
 	// trigger dialogue to appear 
 	public void TriggerDialogue ()
 	{
-		if(!dMAn.dialogActive)
-		{
-			dMAn.ShowDialogue();
-			dMAn.dialogLines = dialogueLines;
-			dMAn.currentLine = 0;
-			
-		}
-		//ShowBox(dialogue);
-	}
+        if (!dMAn.dialogShowing)
+        {
+            dMAn.ShowDialogue();
+        }
+    }
 }

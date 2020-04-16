@@ -6,13 +6,16 @@ using UnityEngine.UI;
 public class DialogueManager : MonoBehaviour
 {
 
-    public GameObject dBox;
-	public Text dText;
-    public bool dialogActive;
-	public string[] dialogLines; 
+    //public GameObject dBox;
+    //public Text dText;
+    public DialogueBox dBox;
+    public bool dialogShowing;
+    [TextArea(3, 10)]
+    public string[] dialogLines;
     public int currentLine;
+    private int maxTipNumber;
 
-	// Start a new queue of sentences to display
+    // Start a new queue of sentences to display
     void Start()
     {
         //sentences = new Queue<string>();
@@ -20,40 +23,50 @@ public class DialogueManager : MonoBehaviour
 
 
     // Box and first message are displayed
-    public void DisplayText(){
-        if (dialogActive) {
-            // dBox.SetActive(false);
-            // dialogActive = false;
+    public void DisplayText()
+    {
+        if (dialogShowing)
+        {
 
             currentLine++;
+            print(currentLine);
+
         }
 
-        if(currentLine >= dialogLines.Length)
+        if (currentLine >= dialogLines.Length)
         {
-            dBox.SetActive(false);
-            dialogActive = false;
-            currentLine = 0;
+            dBox.Disable();
+            dialogShowing = false;
+            currentLine--;
+            print(currentLine);
+
+
         }
 
-        dText.text = dialogLines[currentLine];
+        dBox.text.text = dialogLines[currentLine];
     }
 
-    public void PrevText(){
-        if (currentLine > 0){
+    public void PrevText()
+    {
+
+        if (currentLine > 0)
+        {
             currentLine--;
         }
-        
-        dText.text = dialogLines[currentLine];
+        dBox.text.text = dialogLines[currentLine];
     }
 
-    public void ShowBox(string dialogue){
-        dialogActive = true;
-        dBox.SetActive(true);
-        dText.text = dialogue;
+    public void ShowBox(string dialogue)
+    {
+        dialogShowing = true;
+        dBox.Enable();
+        dBox.text.text = dialogue;
     }
 
-    public void ShowDialogue(){
-        dialogActive = true;
-        dBox.SetActive(true);
+    public void ShowDialogue()
+    {
+        dialogShowing = true;
+        //dBox.SetActive(true);
+        dBox.Enable();
     }
 }
