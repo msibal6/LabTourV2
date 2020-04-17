@@ -124,6 +124,9 @@ public class InteractionController : MonoBehaviour
 
             if (hit.collider != null && hit.collider.gameObject.name == "Monitor")
             {
+                var manager = FindObjectOfType<DialogueManager>();
+                manager.transform.parent = null;
+                print(manager.transform.parent);
                 SceneManager.LoadScene("Computer Screen");
             }
             else if (hit.collider != null && (hit.collider.gameObject.name == "Looking part"

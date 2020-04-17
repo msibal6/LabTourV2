@@ -15,7 +15,7 @@ public class DialogueBox : MonoBehaviour
     // Start is called before the first frame
     void Start()
     {
-        Disable();
+        //Disable();
         text.text = dialogueManager.dialogLines[0];
     }
 
