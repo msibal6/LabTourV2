@@ -6193,8 +6193,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d120afb740494b19b6b2bdbedac5330, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  instance: {fileID: 0}
   dBox: {fileID: 3051997658957025271}
+  startButton: {fileID: 8646128900991845848}
   dialogShowing: 0
   dialogLines:
   - "Welcome in! I\u2019m excited to have you in the lab today.  "
@@ -6206,17 +6206,21 @@ MonoBehaviour:
     exhibiting signs of social anxiety and the other is from our control mouse."
   - "Since this is your first time in the lab, let\u2019s get you familiarized with
     some of our equipment."
-  - "Since this is your first time in the lab, let\u2019s get you familiarized with
-    some of our equipment."
-  - "Since this is your first time in the lab, let\u2019s get you familiarized with
-    some of our equipment."
-  - "Since this is your first time in the lab, let\u2019s get you familiarized with
-    some of our equipment."
-  - "Since this is your first time in the lab, let\u2019s get you familiarized with
-    some of our equipment."
-  - "Since this is your first time in the lab, let\u2019s get you familiarized with
-    some of our equipment."
+  - hint 4
+  - 'hint 5
+
+'
+  - 'hint 6
+
+'
+  - 'hint 7
+
+'
+  - 'hint 8
+
+'
   currentLine: 0
+  canvas: {fileID: 0}
 --- !u!4 &3051997658657957385
 Transform:
   m_ObjectHideFlags: 0

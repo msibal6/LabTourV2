@@ -6,13 +6,7 @@ public class TaskLog : MonoBehaviour
 {
     public Image background;
     public Task[] tasks;
-    // 
    
-
-
-
-
-
     private void Update()
     {
         if (TipsManager.instance.controlViewed == true)

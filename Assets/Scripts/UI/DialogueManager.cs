@@ -9,15 +9,18 @@ public class DialogueManager : MonoBehaviour
 
     //public GameObject dBox;
     //public Text dText;
-    public DialogueManager instance;
+    public static DialogueManager instance;
     public DialogueBox dBox;
+    public GameObject startButton;
     public bool dialogShowing;
     [TextArea(3, 10)]
     public string[] dialogLines;
     public int currentLine;
 
+    private DialogueBox displayedBox;
+    private GameObject shownStart;
     private int maxTipNumber;
-    private Canvas canvas;
+    public Canvas canvas;
 
     // Start a new queue of sentences to display
     void Start()
@@ -32,29 +35,28 @@ public class DialogueManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        dialogShowing = true;
-        canvas = FindObjectOfType<Canvas>();
+
         //gameObject.transform.parent = canvas.transform;
 
-        //SceneManager.sceneUnloaded += RemoveParent;
+        SceneManager.sceneUnloaded += RemoveClones;
+        SceneManager.sceneLoaded += UpdateSceneInfo;
 
-    }
-
-    void RemoveParent(Scene scene)
-    {
-        if (transform.parent != null)
-        {
-            transform.parent = null;
-        }
+        //canvas = FindObjectOfType<Canvas>();
+        //UpdateClones();
     }
 
     private void Update()
     {
+        if (canvas == null)
+        {
+            canvas = FindObjectOfType<Canvas>();
+            UpdateClones();
+        }
+
         if (Input.GetKeyDown(KeyCode.H))
         {
-            dBox.Enable();
-            transform.parent = null;
-
+            ShowDialogue();
+            print("h");
         }
 
         if (dialogShowing)
@@ -71,11 +73,30 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
+    void UpdateSceneInfo(Scene scene, LoadSceneMode mode)
+    {
+        //canvas = FindObjectOfType<Canvas>();
+        //UpdateClones();
+    }
+
+    private void UpdateClones()
+    {
+        displayedBox = Instantiate(instance.dBox);
+        displayedBox.transform.position = instance.dBox.transform.position;
+        displayedBox.transform.SetParent(canvas.transform, true);
+
+        shownStart = Instantiate(instance.startButton);
+        shownStart.transform.position = instance.startButton.transform.position;
+        shownStart.transform.SetParent(canvas.transform, true);
+        dialogShowing = true;
+    }
+
     // Box and first message are displayed
     public void DisplayText()
     {
         if (dialogShowing)
         {
+            print("e");
 
             currentLine++;
 
@@ -83,37 +104,45 @@ public class DialogueManager : MonoBehaviour
 
         if (currentLine >= dialogLines.Length)
         {
-            dBox.Disable();
+            displayedBox.Disable();
             dialogShowing = false;
             currentLine--;
-            transform.parent = null;
 
         }
 
-        dBox.text.text = dialogLines[currentLine];
+        displayedBox.text.text = dialogLines[currentLine];
     }
 
     public void PrevText()
     {
+        print("q");
 
         if (currentLine > 0)
         {
             currentLine--;
         }
-        dBox.text.text = dialogLines[currentLine];
+        displayedBox.text.text = dialogLines[currentLine];
     }
 
     public void ShowBox(string dialogue)
     {
         dialogShowing = true;
-        dBox.Enable();
-        dBox.text.text = dialogue;
+        displayedBox.Enable();
+        displayedBox.text.text = dialogue;
     }
 
     public void ShowDialogue()
     {
         dialogShowing = true;
         //dBox.SetActive(true);
-        dBox.Enable();
+        displayedBox.Enable();
     }
+
+    private void RemoveClones(Scene scene)
+    {
+        Destroy(displayedBox);
+        Destroy(shownStart);
+    }
+
+
 }

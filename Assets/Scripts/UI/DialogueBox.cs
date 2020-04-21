@@ -16,7 +16,7 @@ public class DialogueBox : MonoBehaviour
     void Start()
     {
         //Disable();
-        text.text = dialogueManager.dialogLines[0];
+        text.text = dialogueManager.dialogLines[dialogueManager.currentLine];
     }
 
     public void Disable()
