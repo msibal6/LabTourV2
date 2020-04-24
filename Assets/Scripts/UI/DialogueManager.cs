@@ -34,15 +34,7 @@ public class DialogueManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-
-        //gameObject.transform.parent = canvas.transform;
-
         SceneManager.sceneUnloaded += RemoveClones;
-        SceneManager.sceneLoaded += UpdateSceneInfo;
-
-        //canvas = FindObjectOfType<Canvas>();
-        //UpdateClones();
     }
 
     private void Update()
@@ -73,22 +65,26 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    void UpdateSceneInfo(Scene scene, LoadSceneMode mode)
-    {
-        //canvas = FindObjectOfType<Canvas>();
-        //UpdateClones();
-    }
+    
 
     private void UpdateClones()
     {
         displayedBox = Instantiate(instance.dBox);
         displayedBox.transform.position = instance.dBox.transform.position;
+        displayedBox.transform.rotation = instance.dBox.transform.rotation;
         displayedBox.transform.SetParent(canvas.transform, true);
-
         shownStart = Instantiate(instance.startButton);
         shownStart.transform.position = instance.startButton.transform.position;
         shownStart.transform.SetParent(canvas.transform, true);
-        dialogShowing = true;
+
+        if (dialogShowing)
+        {
+            displayedBox.Enable();
+        }
+        else
+        {
+            displayedBox.Disable();
+        }
     }
 
     // Box and first message are displayed
@@ -96,10 +92,7 @@ public class DialogueManager : MonoBehaviour
     {
         if (dialogShowing)
         {
-            print("e");
-
             currentLine++;
-
         }
 
         if (currentLine >= dialogLines.Length)
@@ -107,16 +100,12 @@ public class DialogueManager : MonoBehaviour
             displayedBox.Disable();
             dialogShowing = false;
             currentLine--;
-
         }
-
         displayedBox.text.text = dialogLines[currentLine];
     }
 
     public void PrevText()
     {
-        print("q");
-
         if (currentLine > 0)
         {
             currentLine--;
@@ -134,7 +123,6 @@ public class DialogueManager : MonoBehaviour
     public void ShowDialogue()
     {
         dialogShowing = true;
-        //dBox.SetActive(true);
         displayedBox.Enable();
     }
 

@@ -29,7 +29,7 @@ public class InteractionController : MonoBehaviour
         // Initializes using instance after first switch to LabRoom scene
         if (MySceneManager.instance)
         {
-            transform.localRotation = MySceneManager.instance.playerRot;
+            //transform.localRotation = MySceneManager.instance.playerRot;
         }
 
 

@@ -7,11 +7,11 @@ public class SlideController : MonoBehaviour
 
 
     private GameObject holder;
-    private int numSlides = 2;
+    private readonly int numSlides = 2;
 
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
 
         if (MySceneManager.instance && gameObject.name != MySceneManager.instance.slideDisplayed)
