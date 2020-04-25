@@ -310,6 +310,85 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 134605810}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &160837316
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 309649717423161411, guid: e4e45f030d69745f79f2c55b72b5aeec,
+        type: 3}
+      propertyPath: m_Name
+      value: Anxious Mouse
+      objectReference: {fileID: 0}
+    - target: {fileID: 6520109799785366287, guid: e4e45f030d69745f79f2c55b72b5aeec,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.3336641
+      objectReference: {fileID: 0}
+    - target: {fileID: 6520109799785366287, guid: e4e45f030d69745f79f2c55b72b5aeec,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.6152942
+      objectReference: {fileID: 0}
+    - target: {fileID: 6520109799785366287, guid: e4e45f030d69745f79f2c55b72b5aeec,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -6.1027613
+      objectReference: {fileID: 0}
+    - target: {fileID: 6520109799785366287, guid: e4e45f030d69745f79f2c55b72b5aeec,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 6520109799785366287, guid: e4e45f030d69745f79f2c55b72b5aeec,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6520109799785366287, guid: e4e45f030d69745f79f2c55b72b5aeec,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6520109799785366287, guid: e4e45f030d69745f79f2c55b72b5aeec,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071067
+      objectReference: {fileID: 0}
+    - target: {fileID: 6520109799785366287, guid: e4e45f030d69745f79f2c55b72b5aeec,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6520109799785366287, guid: e4e45f030d69745f79f2c55b72b5aeec,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6520109799785366287, guid: e4e45f030d69745f79f2c55b72b5aeec,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6520109799785366287, guid: e4e45f030d69745f79f2c55b72b5aeec,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6812939349913648538, guid: e4e45f030d69745f79f2c55b72b5aeec,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: eaec26fabadae4ebcbdc2792f9b2e832, type: 2}
+    - target: {fileID: 3583695325241790252, guid: e4e45f030d69745f79f2c55b72b5aeec,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: eaec26fabadae4ebcbdc2792f9b2e832, type: 2}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e4e45f030d69745f79f2c55b72b5aeec, type: 3}
 --- !u!1 &178049077
 GameObject:
   m_ObjectHideFlags: 0
@@ -4403,85 +4482,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1653352940}
   m_CullTransparentMesh: 0
---- !u!1001 &1684198979
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 309649717423161411, guid: e4e45f030d69745f79f2c55b72b5aeec,
-        type: 3}
-      propertyPath: m_Name
-      value: Anxious Mouse
-      objectReference: {fileID: 0}
-    - target: {fileID: 6520109799785366287, guid: e4e45f030d69745f79f2c55b72b5aeec,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -1.3336641
-      objectReference: {fileID: 0}
-    - target: {fileID: 6520109799785366287, guid: e4e45f030d69745f79f2c55b72b5aeec,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.6152942
-      objectReference: {fileID: 0}
-    - target: {fileID: 6520109799785366287, guid: e4e45f030d69745f79f2c55b72b5aeec,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -6.1027613
-      objectReference: {fileID: 0}
-    - target: {fileID: 6520109799785366287, guid: e4e45f030d69745f79f2c55b72b5aeec,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 6520109799785366287, guid: e4e45f030d69745f79f2c55b72b5aeec,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6520109799785366287, guid: e4e45f030d69745f79f2c55b72b5aeec,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6520109799785366287, guid: e4e45f030d69745f79f2c55b72b5aeec,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071067
-      objectReference: {fileID: 0}
-    - target: {fileID: 6520109799785366287, guid: e4e45f030d69745f79f2c55b72b5aeec,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 6520109799785366287, guid: e4e45f030d69745f79f2c55b72b5aeec,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6520109799785366287, guid: e4e45f030d69745f79f2c55b72b5aeec,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6520109799785366287, guid: e4e45f030d69745f79f2c55b72b5aeec,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6812939349913648538, guid: e4e45f030d69745f79f2c55b72b5aeec,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: eaec26fabadae4ebcbdc2792f9b2e832, type: 2}
-    - target: {fileID: 3583695325241790252, guid: e4e45f030d69745f79f2c55b72b5aeec,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: eaec26fabadae4ebcbdc2792f9b2e832, type: 2}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: e4e45f030d69745f79f2c55b72b5aeec, type: 3}
 --- !u!1 &1693380063
 GameObject:
   m_ObjectHideFlags: 0
@@ -6282,20 +6282,51 @@ MonoBehaviour:
     exhibiting signs of social anxiety and the other is from our control mouse."
   - "Since this is your first time in the lab, let\u2019s get you familiarized with
     some of our equipment."
-  - hint 4
-  - 'hint 5
+  - "Check out the slides we prepared earlier containing slices from two different
+    mouse brains. \n"
+  - "They\u2019ve been stained with special antibodies: one that binds to cells that
+    produce oxytocin and another that binds to active cells.\n"
+  - "Look into our microscope. Please be careful with it! It\u2019s a very delicate
+    piece of equipment and vital to our research. \n"
+  - "You can place a microscope slide here, and view it by looking through the eyepieces.
+    \n"
+  - "It\u2019s fitted with a camera that allows us to take high resolution pictures
+    so we can gather valuable research data. \n"
+  - "With our computer, you can view the pictures taken from the microscope camera.
+    \n"
+  - "There\u2019s also a handy log on the homescreen that will track your progress.
+    Check it if you\u2019re not sure what to do next.\n"
+  - "Great! Those are all the tools you\u2019ll need to view and analyze the slides
+    in front of you. \n"
+  - 'Go ahead and put a slide on the microscope stage. Click a slide and then slide
+    the microscope stage. Click the eyepieces to view.
 
 '
-  - 'hint 6
+  - 'This is the slide from the control mouse. Go ahead and take a look at it under
+    the microscope.
 
 '
-  - 'hint 7
-
-'
-  - 'hint 8
+  - "This is what our control mouse\u2019s brain looks like close-up. Toggle one of
+    the filters on and we\u2019ll see the different stains.\n"
+  - "This is the slide from the mouse showing signs of social anxiety. Let\u2019s
+    take a look at it under the microscope.\n"
+  - "Here\u2019s a close-up view of the anxious mouse. Go ahead and toggle one of
+    the filters so we can see the stains.\n"
+  - "This filter lets us see the cells that were active in the brain. Snap a picture
+    and we\u2019ll interpret it later with the computer.\n"
+  - "With this filter, we can see the stain that marked oxytocin-producing cells in
+    the brain. Take a picture and we\u2019ll interpret it later with the computer.\n"
+  - "Good, now we\u2019ll need to take a picture with the other filter so we can compare
+    the two images.\n"
+  - 'Great! Now that we have images using both filters we can overlay them on each
+    other.
 
 '
   currentLine: 0
+  controlOverlayChecked: 0
+  anxiousOverlayChecked: 0
+  anxiousViewed: 0
+  controlViewed: 0
   canvas: {fileID: 0}
 --- !u!4 &3051997658657957385
 Transform:

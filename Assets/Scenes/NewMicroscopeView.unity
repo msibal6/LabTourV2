@@ -293,11 +293,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d120afb740494b19b6b2bdbedac5330, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dBox: {fileID: 560023044}
-  dText: {fileID: 603005434}
-  dialogActive: 0
+  dBox: {fileID: 0}
+  startButton: {fileID: 0}
+  dialogShowing: 0
   dialogLines: []
   currentLine: 0
+  controlOverlayChecked: 0
+  anxiousOverlayChecked: 0
+  anxiousViewed: 0
+  controlViewed: 0
+  canvas: {fileID: 0}
 --- !u!4 &40774533
 Transform:
   m_ObjectHideFlags: 0
@@ -1359,12 +1364,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1393597877}
-        m_MethodName: TriggerDialogue
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 15
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0

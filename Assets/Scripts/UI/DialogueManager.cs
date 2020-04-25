@@ -17,9 +17,27 @@ public class DialogueManager : MonoBehaviour
     public string[] dialogLines;
     public int currentLine;
 
+    public bool controlOverlayChecked;
+    public bool anxiousOverlayChecked;
+    public bool anxiousViewed;
+    public bool controlViewed;
+
+    private bool introduced;
+    private bool slidesChecked;
+    private bool micChecked;
+    private bool pcChecked;
+    private bool allViewed;
+    private bool anxiousPicked;
+    private bool controlPicked;
+    private bool filterViewed;
+    private bool noFilterViewed;
+    private bool filterPicTaken;
+    private bool noFilterPicTaken;
+
+    private InteractionController tempPlayer;
     private DialogueBox displayedBox;
     private GameObject shownStart;
-    private int maxTipNumber;
+    private int maxHintNumber;
     public Canvas canvas;
 
     // Start a new queue of sentences to display
@@ -34,7 +52,7 @@ public class DialogueManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        SceneManager.sceneUnloaded += RemoveClones;
+        SceneManager.sceneUnloaded += SceneClene;
     }
 
     private void Update()
@@ -48,7 +66,6 @@ public class DialogueManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.H))
         {
             ShowDialogue();
-            print("h");
         }
 
         if (dialogShowing)
@@ -63,9 +80,130 @@ public class DialogueManager : MonoBehaviour
                 PrevText();
             }
         }
+
+        Scene currentScene = SceneManager.GetActiveScene();
+        switch (currentScene.name.ToString())
+        {
+            case "LabRoom":
+                ShowLabRoomTips();
+                break;
+            case "NewMicroscopeView":
+                ShowMicroscopeTips();
+                break;
+
+            default:
+                break;
+        }
     }
 
-    
+    private void ShowLabRoomTips()
+    {
+        if (tempPlayer == null) tempPlayer = FindObjectOfType<InteractionController>();
+
+
+        if (instance.pcChecked == false && tempPlayer.GetRaycastHit().collider != null &&
+            tempPlayer.GetRaycastHit().collider.name == "Monitor")
+        {
+            instance.pcChecked = true;
+        }
+
+        if (instance.micChecked == false && tempPlayer.GetRaycastHit().collider != null &&
+            (tempPlayer.GetRaycastHit().collider.name == "Looking part" ||
+            tempPlayer.GetRaycastHit().collider.name == "Looking part 1"))
+        {
+            instance.micChecked = true;
+        }
+
+        if (instance.slidesChecked == false && tempPlayer.GetRaycastHit().collider != null &&
+            tempPlayer.GetRaycastHit().collider.CompareTag("Slide"))
+        {
+            instance.slidesChecked = true;
+        }
+
+        if (instance.anxiousPicked == false && tempPlayer.GetHeldObject() != null
+            && tempPlayer.GetHeldObject().name == "Anxious Mouse")
+        {
+            instance.anxiousPicked = true;
+            Refresh(15);
+        }
+
+        if (instance.controlPicked == false && tempPlayer.GetHeldObject() != null
+            && tempPlayer.GetHeldObject().name == "Control Mouse")
+        {
+            instance.controlPicked = true;
+            Refresh(13);
+        }
+
+        if (instance.allViewed == false && instance.pcChecked == true
+            && instance.micChecked == true && instance.slidesChecked == true)
+        {
+            instance.allViewed = true;
+        }
+    }
+
+    private void ShowMicroscopeTips()
+    {
+        if (instance.anxiousViewed == false && MySceneManager.instance.slideDisplayed == "Anxious Mouse")
+        {
+            instance.anxiousViewed = true;
+            Refresh(16);
+        }
+
+        if (instance.controlViewed == false && MySceneManager.instance.slideDisplayed == "Control Mouse")
+        {
+            instance.controlViewed = true;
+            Refresh(14);
+        }
+
+        if (instance.noFilterViewed == false && MySceneManager.instance.slideDisplayed != "")
+        {
+            instance.noFilterViewed = true;
+        }
+
+        if (instance.filterViewed == false && MySceneManager.instance.slideDisplayed != "")
+        {
+            Toggle filter = FindObjectOfType<Toggle>();
+            if (filter.isOn)
+            {
+                instance.filterViewed = true;
+                Refresh(17);
+            }
+        }
+
+        if (instance.noFilterPicTaken == false && MySceneManager.instance.slideDisplayed != "")
+        {
+            GameObject objectButton = GameObject.Find("Take Image");
+            Button button = objectButton.GetComponentInChildren<Button>();
+            Toggle filter = FindObjectOfType<Toggle>();
+            button.onClick.AddListener(DisplayNoFilterTaken);
+            void DisplayNoFilterTaken()
+            {
+                if (instance.noFilterPicTaken == false && !filter.isOn)
+                {
+                    instance.noFilterPicTaken = true;
+                    print("no filter pic taken");
+                    Refresh(19);
+                }
+            }
+        }
+
+        if (instance.filterPicTaken == false && MySceneManager.instance.slideDisplayed != "")
+        {
+            GameObject objectButton = GameObject.Find("Take Image");
+            Button takeImage = objectButton.GetComponentInChildren<Button>(); Toggle filter = FindObjectOfType<Toggle>();
+            takeImage.onClick.AddListener(DisplayFilterTaken);
+            void DisplayFilterTaken()
+            {
+                if (filter.isOn && instance.filterPicTaken == false)
+                {
+                    instance.filterPicTaken = true;
+                    Refresh(20);
+                }
+            }
+        }
+    }
+
+
 
     private void UpdateClones()
     {
@@ -126,11 +264,20 @@ public class DialogueManager : MonoBehaviour
         displayedBox.Enable();
     }
 
-    private void RemoveClones(Scene scene)
+    public void Refresh(int index)
+    {
+        currentLine = index;
+        ShowDialogue();
+        displayedBox.text.text = dialogLines[currentLine];
+    }
+    private void SceneClene(Scene scene)
+    {
+        RemoveClones();
+    }
+
+    private void RemoveClones()
     {
         Destroy(displayedBox);
         Destroy(shownStart);
     }
-
-
 }

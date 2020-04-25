@@ -53,13 +53,11 @@ public class TipsManager : MonoBehaviour
         }
 
         SceneManager.sceneUnloaded += SceneChangeCoroutine;
-        //SceneManager.sceneLoaded += StopDisplay;
     }
 
     // Update is called once per frame
     void Update()
     {
-        // TODO Fix tips displaying across scenes
         Scene currentScene = SceneManager.GetActiveScene();
         switch (currentScene.name.ToString())
         {

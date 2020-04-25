@@ -6,20 +6,25 @@ using UnityEngine.UI;
 public class DialogueTrigger : MonoBehaviour
 {
 	public string dialogue;
-	private DialogueManager dMAn;
+	private DialogueManager dMan;
 	[TextArea(3, 10)]
 	public string[] dialogueLines;
 
 	void Start(){
-		dMAn = FindObjectOfType<DialogueManager>();
+		dMan = FindObjectOfType<DialogueManager>();
 	}
 
 	// trigger dialogue to appear 
 	public void TriggerDialogue ()
 	{
-        if (!dMAn.dialogShowing)
+        if (!dMan.dialogShowing)
         {
-            dMAn.ShowDialogue();
+            dMan.ShowDialogue();
         }
     }
+
+    public void TriggerSpecificDialogue(int index)
+    {
+		dMan.currentLine = index;
+	}
 }
