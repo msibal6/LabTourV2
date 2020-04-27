@@ -29,7 +29,6 @@ public class PopUp : MonoBehaviour
     {
         image.enabled = true;
         text.enabled = true;
-
     }
 
     public void Close()

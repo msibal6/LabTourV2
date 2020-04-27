@@ -9,7 +9,7 @@ public class TaskLog : MonoBehaviour
    
     private void Update()
     {
-        if (TipsManager.instance.controlViewed == true)
+        if (DialogueManager.instance.controlViewed == true)
         {
             tasks[0].CheckOff();
         }
@@ -27,7 +27,7 @@ public class TaskLog : MonoBehaviour
 
 
 
-        if (TipsManager.instance.anxiousViewed == true)
+        if (DialogueManager.instance.anxiousViewed == true)
         {
             tasks[4].CheckOff();
         }
@@ -42,12 +42,12 @@ public class TaskLog : MonoBehaviour
             tasks[6].CheckOff();
         }
 
-        if (TipsManager.instance.controlOverlayChecked)
+        if (DialogueManager.instance.controlOverlayChecked)
         {
             tasks[3].CheckOff();
         }
 
-        if (TipsManager.instance.anxiousOverlayChecked)
+        if (DialogueManager.instance.anxiousOverlayChecked)
         {
             tasks[7].CheckOff();
         }
@@ -56,18 +56,18 @@ public class TaskLog : MonoBehaviour
 
     public void CheckOverlays()
     {
-        if (!TipsManager.instance.controlOverlayChecked && MySceneManager.instance.picturesTaken.Contains("Control Red")
+        if (!DialogueManager.instance.controlOverlayChecked && MySceneManager.instance.picturesTaken.Contains("Control Red")
             && MySceneManager.instance.picturesTaken.Contains("Control Blue"))
         {
-            TipsManager.instance.controlOverlayChecked = true;
+            DialogueManager.instance.controlOverlayChecked = true;
             tasks[3].CheckOff();
 
         }
 
-        if (!TipsManager.instance.anxiousOverlayChecked && MySceneManager.instance.picturesTaken.Contains("Stress Red")
+        if (!DialogueManager.instance.anxiousOverlayChecked && MySceneManager.instance.picturesTaken.Contains("Stress Red")
         && MySceneManager.instance.picturesTaken.Contains("Stress Blue"))
         {
-            TipsManager.instance.anxiousOverlayChecked = true;
+            DialogueManager.instance.anxiousOverlayChecked = true;
             tasks[7].CheckOff();
         }
     }

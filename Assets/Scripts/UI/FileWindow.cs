@@ -7,9 +7,11 @@ using UnityEngine.UI;
 public class FileWindow : MonoBehaviour
 {
     public Image fileBackground;
-    public Button exitButton;
-    // HACK FUTURE make a file class
-    public PopUp[] files;
+    // make this exitButton a mutton
+    public Mutton exitMutton;
+   
+    public ImageFile[] imageFiles;
+
 
     // Start is called before the first frame update
     void Start()
@@ -17,17 +19,13 @@ public class FileWindow : MonoBehaviour
         fileBackground.enabled = false;
         // TODO
         // Make a button class that 
-        exitButton.enabled = false;
-        exitButton.GetComponentInChildren<Text>().enabled = false;
-        exitButton.GetComponent<Image>().enabled = false;
-        // We already that PopUps start out disabled;
+        exitMutton.Disable();
     }
 
     public void OpenFileWindow()
     {
         fileBackground.enabled = true;
-        exitButton.enabled = true;
-        exitButton.GetComponentInChildren<Text>().enabled = true;
+        exitMutton.Enable();
         ShowPictures();
 
     }
@@ -38,27 +36,33 @@ public class FileWindow : MonoBehaviour
         // Just show pictures that they have taken
         if (MySceneManager.instance.picturesTaken.Contains("Control Blue"))
         {
-            files[0].Display();
+            //files[0].Display();
+            imageFiles[0].ShowIcon();
         }
         if (MySceneManager.instance.picturesTaken.Contains("Control Red"))
         {
-            files[1].Display();
+            //files[1].Display();
+            imageFiles[1].ShowIcon();
+
         }
         if (MySceneManager.instance.picturesTaken.Contains("Stress Blue"))
         {
-            files[2].Display();
+            //files[2].Display();
+            imageFiles[2].ShowIcon();
+
         }
         if (MySceneManager.instance.picturesTaken.Contains("Stress Red"))
         {
-            files[3].Display();
+            //files[3].Display();
+            imageFiles[3].ShowIcon();
+
         }
     }
 
     public void CloseFileWindow()
     {
         fileBackground.enabled = false;
-        exitButton.enabled = false;
-        exitButton.GetComponentInChildren<Text>().enabled = false;
+        exitMutton.Disable();
         ClosePictures();
 
 
@@ -66,11 +70,11 @@ public class FileWindow : MonoBehaviour
 
     private void ClosePictures()
     {
-        foreach (PopUp file in files)
+        foreach (ImageFile imageFile in imageFiles)
         {
-            if (file.IsShowing())
+            if (imageFile.IconShowing == true)
             {
-                file.Close();
+                imageFile.HideIcon();
             }
         }
     }

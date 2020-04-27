@@ -9,7 +9,6 @@ public class AudioPlayer : MonoBehaviour
     public void Play()
     {
         sound.Play();
-
     }
 
 }

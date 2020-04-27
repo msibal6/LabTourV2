@@ -7,9 +7,8 @@ using UnityEngine.UI;
 public class OverlayWindow : MonoBehaviour
 {
     public Image fileBackground;
-    public Button exitButton;
-    // HACK FUTURE make a file class
-    public PopUp[] files;
+    public Mutton exitMutton;
+    public ImageFile[] overlayFiles;
 
     // Start is called before the first frame update
     void Start()
@@ -17,17 +16,14 @@ public class OverlayWindow : MonoBehaviour
         fileBackground.enabled = false;
         // TODO
         // Make a button class that 
-        exitButton.enabled = false;
-        exitButton.GetComponentInChildren<Text>().enabled = false;
-        exitButton.GetComponent<Image>().enabled = false;
+        exitMutton.Disable();
         // We already that PopUps start out disabled;
     }
 
     public void OpenWindow()
     {
         fileBackground.enabled = true;
-        exitButton.enabled = true;
-        exitButton.GetComponentInChildren<Text>().enabled = true;
+        exitMutton.Enable();
         showOverlays();
 
     }
@@ -39,22 +35,24 @@ public class OverlayWindow : MonoBehaviour
         if (MySceneManager.instance.picturesTaken.Contains("Control Blue")
             && MySceneManager.instance.picturesTaken.Contains("Control Red"))
         {
-            files[0].Display();
+            //files[0].Display();
+            overlayFiles[0].ShowIcon();
         }
-       
+
         if (MySceneManager.instance.picturesTaken.Contains("Stress Blue")
             && MySceneManager.instance.picturesTaken.Contains("Stress Red"))
         {
-            files[1].Display();
+            //files[1].Display();
+            overlayFiles[1].ShowIcon();
+
         }
-       
+
     }
 
     public void CloseWindow()
     {
         fileBackground.enabled = false;
-        exitButton.enabled = false;
-        exitButton.GetComponentInChildren<Text>().enabled = false;
+        exitMutton.Disable();
         CloseFiles();
 
 
@@ -62,11 +60,11 @@ public class OverlayWindow : MonoBehaviour
 
     private void CloseFiles()
     {
-        foreach (PopUp file in files)
+        foreach (ImageFile overlayFile in overlayFiles)
         {
-            if (file.IsShowing())
+            if (overlayFile.IconShowing == true)
             {
-                file.Close();
+                overlayFile.HideIcon();
             }
         }
     }
