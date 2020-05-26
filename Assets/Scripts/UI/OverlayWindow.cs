@@ -22,6 +22,8 @@ public class OverlayWindow : MonoBehaviour
 
     public void OpenWindow()
     {
+       
+
         fileBackground.enabled = true;
         exitMutton.Enable();
         showOverlays();
