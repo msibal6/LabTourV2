@@ -8,6 +8,7 @@ public class VideoWindow : MonoBehaviour
 {
     public Image fileBackground;
     public Mutton exitMutton;
+    public Mutton[] videoThumbnails;
     public Mutton videoClose;
     public VideoPlayer videoPlayer;
     public GameObject videoScreen;
@@ -21,29 +22,36 @@ public class VideoWindow : MonoBehaviour
     {
         videoPlayer.enabled = false;
         videoScreen.SetActive(false);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        videoClose.Disable();
+        CloseVideoWindow();
     }
 
     public void OpenVideoWindow()
     {
-
+        fileBackground.enabled = true;
+        exitMutton.Enable();
+        foreach (Mutton thumbnail in videoThumbnails)
+        {
+            thumbnail.Enable();
+        }
     }
 
     public void CloseVideoWindow()
     {
-        // close the video window
+        fileBackground.enabled = false;
+        exitMutton.Disable();
+        foreach (Mutton thumbnail in videoThumbnails)
+        {
+            thumbnail.Disable();
+        }
     }
 
     public void PlayVideo(int index)
     {
         videoScreen.SetActive(true);
         videoPlayer.enabled = true;
-
+        videoClose.Enable();
+        CloseVideoWindow();
         videoPlayer.url = System.IO.Path.Combine(Application.streamingAssetsPath, QAvideos[index].name.ToString() + ".mp4");
         videoPlayer.Play();
         print("playing video");
@@ -51,6 +59,12 @@ public class VideoWindow : MonoBehaviour
 
     public void CloseVideo()
     {
-        // close currently playing video 
+        videoScreen.SetActive(false);
+        videoPlayer.enabled = false;
+        videoClose.Disable();
+        OpenVideoWindow();
+        print("closing video");
+
     }
+
 } 
